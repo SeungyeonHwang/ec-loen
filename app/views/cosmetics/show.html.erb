@@ -1,2 +1,24 @@
-<h1>Cosmetics#show</h1>
-<p>Find me in app/views/cosmetics/show.html.erb</p>
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">ホーム</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">詳細</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @cosmetic.product_name %></li>
+        </ol>
+    </nav>
+    <div class="row mt-4">
+        <div class="col-6">
+            <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
+        <div class="col-6">
+            <p><%= @cosmetic.product_name %></p>
+            <hr>
+            <p><%= @cosmetic.desc %></p>
+            <hr>
+            <p><%= @cosmetic.company_name %></p>
+        </div>
+    </div>
+</div>
