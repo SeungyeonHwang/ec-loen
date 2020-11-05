@@ -12,12 +12,17 @@
     </nav>
     <div class="row mt-4">
         <div class="col-6">
-            <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
+            <% if @cosmetic.image.attached? %>
+                <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
+            <% else %>
+                <img src="https://via.placeholder.com/640x360?text=No+Image" class="img-fluid"></div>
+            <% end %>
         <div class="col-6">
             <p><%= @cosmetic.product_name %></p>
             <hr>
             <p><%= @cosmetic.desc %></p>
             <hr>
+            <h5>説明</h5>
             <p><%= @cosmetic.company_name %></p>
         </div>
     </div>
