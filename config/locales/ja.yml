@@ -13,6 +13,8 @@ ja:
         image: イメージ
         desc: 説明
         company_name: メーカー
+        price: 販売価格
+        is_open: 公開の有無
 
     errors:
       messages:

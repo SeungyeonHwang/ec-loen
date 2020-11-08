@@ -76,9 +76,11 @@ ja:
         one: "1件の %{model} を削除しました"
         other: "%{count}件の %{plural_model} を削除しました"
       selection_toggle_explanation: "(選択)"
-      action_label: "選択した行を%{title}"
+      action_label: "%{title}"
       labels:
         destroy: "削除する"
+        open: "公開する"
+        close: "非公開する"
     comments:
       created_at: "作成日"
       resource_type: "リソース種別"
