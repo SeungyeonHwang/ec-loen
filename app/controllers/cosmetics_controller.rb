@@ -1,6 +1,6 @@
 class CosmeticsController < ApplicationController
   def index
-    @cosmetics = Cosmetic.all
+    @cosmetics = Cosmetic.Opend
   end
 
   def show

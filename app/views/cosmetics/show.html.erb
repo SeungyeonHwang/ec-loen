@@ -13,17 +13,29 @@
     <div class="row mt-4">
         <div class="col-6">
             <% if @cosmetic.image.attached? %>
-                <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
-            <% else %>
-                <img src="https://via.placeholder.com/640x360?text=No+Image" class="img-fluid"></div>
-            <% end %>
-        <div class="col-6">
-            <p><%= @cosmetic.product_name %></p>
-            <hr>
-            <p><%= @cosmetic.desc %></p>
-            <hr>
-            <h5>説明</h5>
-            <p><%= @cosmetic.company_name %></p>
-        </div>
+            <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
+        <% else %>
+        <img src="https://via.placeholder.com/640x360?text=No+Image" class="img-fluid">
     </div>
+    <% end %>
+    <div class="col-6">
+        <h3><%= @cosmetic.product_name %></h3>
+        <p><%= @cosmetic.desc %></p>
+        <hr>
+        <h5>説明</h5>
+        <p><%= @cosmetic.company_name %></p>
+        <hr>
+        <h4>必須<br>オッションを選択する</h4>
+        <form action="/carts" method="POST">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <input type="hidden" name="cosmetic_id" value="<%= @cosmetic.id %>">
+            <div calss="form-group">
+                <label for="quantity">数量</label>
+                <input type="number" name="quantity" value="1" id="quantity" class="form-control" min="1" max="10">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-dark">カートに入れる</button>
+        </form>
+    </div>
+</div>
 </div>

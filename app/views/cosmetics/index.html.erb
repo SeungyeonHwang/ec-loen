@@ -8,7 +8,7 @@
                     <% end %>
                     <div class="card-body">
                         <h5 class="card-title"><%= cosmetic.product_name %></h5>
-                        <p class="card-text"><%= cosmetic.desc %></p>
+                        <p class="card-text"><%= number_to_currency(cosmetic.price) %></p>
                         <a href="/cosmetics/<%= cosmetic.id %>" class="btn btn-primary">詳細</a>
                     </div>
                 </div>
