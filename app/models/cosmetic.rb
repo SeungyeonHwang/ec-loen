@@ -1,3 +1,5 @@
+require "open-uri"
+
 class Cosmetic < ApplicationRecord
   has_one_attached :image
 
@@ -14,13 +16,19 @@ class Cosmetic < ApplicationRecord
   has_many :users, through: :carts
 
   #ダミーデーター作成
-  def self.set_dummy_datas
-    30.times do
-      Cosmetic.create(
+  def self.set_dummy_data
+    30.times do |i|
+      cosmetic = Cosmetic.new(
         product_name: Faker::Code.unique.npi,
         company_name: Faker::Company.name,
         price: [2000, 3000, 4000].sample
       )
+
+      # ActiveStroageのイメージ作成機能
+      sample_image = open("https://picsum.photos/150/250?random=#{i}")
+
+      cosmetic.image.attach(io: sample_image, filename: "sample_#{i}.jpg")
+      cosmetic.save
     end
   end
 end
