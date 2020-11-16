@@ -32,7 +32,7 @@
             <div calss="form-group">
                 <label for="exampleFormControlSelect1">Example select</label>
                 <label for="quantity">数量</label>
-                 <select class="form-control" name="quantity" id="quantity">
+                <select class="form-control" name="quantity" id="quantity">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -50,4 +50,13 @@
         </form>
     </div>
 </div>
-</div>
+<script>
+
+    <% if flash[:notice].present? %>
+        result = confirm("<%= flash[:notice] %>")
+
+        if (result) {
+            location.href = "/carts"
+        }
+    <% end %>
+</script>
