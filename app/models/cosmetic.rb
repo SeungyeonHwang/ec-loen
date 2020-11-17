@@ -15,13 +15,16 @@ class Cosmetic < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :users, through: :carts
 
+  has_many :order_items, dependent: :destroy
+  has_many :orders, through: :order_items
+
   #ダミーデーター作成
   def self.set_dummy_data
     30.times do |i|
       cosmetic = Cosmetic.new(
         product_name: Faker::Code.unique.npi,
         company_name: Faker::Company.name,
-        price: [2000, 3000, 4000].sample
+        price: [2000, 3000, 4000].sample,
       )
 
       # ActiveStroageのイメージ作成機能
