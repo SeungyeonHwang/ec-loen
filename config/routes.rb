@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/create'
+  get 'orders/show'
   get 'carts/create'
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   resources :cosmetics, only: [:index, :show]
 
   resources :carts, only: [:create, :index, :destroy]
+
+  resources :orders, only: [:create, :show]
 
   root "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

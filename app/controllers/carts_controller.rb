@@ -2,8 +2,25 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
 
   # カート情報の連携
+  # カートで表示される商品の小計
   def index
     @carts = current_user.carts
+
+    @items_price = 0
+    @carts.each do |cart|
+      @items_price += cart.quantity * cart.cosmetic.price
+    end
+
+    @shipping_fee = 250
+
+  #購買金額が10000以上の場合は配送料が無料になる
+    if @items_price >= 10000
+      @shipping_fee = 0
+    else
+      @shipping_fee = 250
+    end
+
+    @total_price = @items_price + @shipping_fee
   end
 
   def create

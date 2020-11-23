@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <h3>注文内容を確認・変更する</h3>
+      <% @order.order_items.each do |item| %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= item.cosmetic.product_name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= item.cosmetic.company_name %></h6>
+          <p class="card-text">数量 : <%= item.quantity %></p>
+          <a href="#" class="card-link">変更</a>
+          <a href="#" class="card-link">削除</a>
+          <p class="card-text">価格 : <%= number_to_currency(item.quantity * item.cosmetic.price) %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <h3>お届け先住所</h3>
+      <form>
+        <div class="form-group mt-2">
+          <label for="">氏名</label>
+          <input type="text" class="form-control" id="name" name="name">
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="">郵便番号 </label>
+          <input type="text" class="form-control" id="phone">
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="">Eメール</label>
+          <input type="text" class="form-control" id="email">
+        </div>
+
+        <div class="form-group mt-2">
+          <label for="" class="d-block">住所</label>
+          <a href="#" class="btn btn-outline-dark">検索する</a>
+          <input type="text" class="form-control mt-2" id="adress_1" name="adress_1" placeholder="住所1">
+          <input type="text" class="form-control mt-2" id="adress_2" name="adress_2" placeholder="住所2">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

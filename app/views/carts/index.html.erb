@@ -22,7 +22,8 @@
             <td><%= cart.quantity %></td>
             <td><%= number_to_currency(cart.quantity * cart.cosmetic.price) %></td>
             <td>
-              <a href="/carts/<%= cart.id %>" class="ml-2" data-method="delete" data-confirm="商品を削除しますか？"><%= icon('fas', 'times-circle') %></a>
+              <a href="/carts/<%= cart.id %>" class="ml-2" data-method="delete"
+                data-confirm="商品を削除しますか？"><%= icon('fas', 'times-circle') %></a>
             </td>
           </tr>
           <% end %>
@@ -30,4 +31,44 @@
       </table>
     </div>
   </div>
+
+  <% if @carts.present? %>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title">商品の小計</h5>
+            <p class="card-text"><%= number_to_currency(@items_price) %></p>
+          </div>
+          <div class="d-flex justify-content-between mt-3">
+            <h5 class="card-title">配送料・手数料</h5>
+            <p class="card-text"><%= number_to_currency(@shipping_fee) %></p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between mt-3">
+            <h5 class="card-title">ご請求額</h5>
+            <p class="card-text"><%= number_to_currency(@total_price) %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-6">
+          <a href="/cosmetics" class="btn btn-dark">ショッピングに戻す</a>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+          <form action="/orders" method="POST">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <% @carts.each do |cart| %>
+            <input type="hidden" name="cart_id[]" value="<%= cart.id %>">
+            <% end %>
+            <button type="submit" class="btn btn-outline-dark">注文を確定する</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
