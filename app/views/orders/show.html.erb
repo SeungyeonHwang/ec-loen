@@ -10,7 +10,7 @@
           <p class="card-text">数量 : <%= item.quantity %></p>
           <a href="#" class="card-link">変更</a>
           <a href="#" class="card-link">削除</a>
-          <p class="card-text">価格 : <%= number_to_currency(item.quantity * item.cosmetic.price) %></p>
+          <p class="card-text">価格 : <%= price_to_currency(item) %></p>
         </div>
       </div>
       <% end %>
@@ -38,11 +38,31 @@
 
         <div class="form-group mt-2">
           <label for="" class="d-block">住所</label>
-          <a href="#" class="btn btn-outline-dark">検索する</a>
-          <input type="text" class="form-control mt-2" id="adress_1" name="adress_1" placeholder="住所1">
-          <input type="text" class="form-control mt-2" id="adress_2" name="adress_2" placeholder="住所2">
+          <input type="text" class="form-control mt-2" name="zipcode" maxlength="9" type="tel"
+            onchange="javascript:getAddName(this.value)" placeholder="郵便番号">
+          <input type="text" class="form-control mt-2" id="add_name" name="address" placeholder="住所1">
+          <input type="text" class="form-control mt-2" id="adress_1" name="adress_1" placeholder="住所2">
         </div>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+// 住所検索（郵便番号利用）
+  var getAddName = function ($addNum) {
+    var _zipcloudAPI = document.body.appendChild(document.createElement("script"));
+    _zipcloudAPI.src = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=" + $addNum +
+      "&callback=getAddNameByZipcloudAPI";
+    document.body.removeChild(_zipcloudAPI);
+  };
+  var getAddNameByZipcloudAPI = function ($getAdd) {
+    var _addFormatted = "";
+    if ($getAdd.status == 200) {
+      _addFormatted += $getAdd.results[0].address1; // 都道府県名
+      _addFormatted += $getAdd.results[0].address2; // 市町村名
+      _addFormatted += $getAdd.results[0].address3; // 町域名
+    }
+    document.getElementById("add_name").value = _addFormatted;
+  };
+</script>

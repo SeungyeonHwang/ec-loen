@@ -20,7 +20,7 @@
             <th scope="row"><%= cart.cosmetic.product_name %></th>
             <td><%= number_to_currency(cart.cosmetic.price) %></td>
             <td><%= cart.quantity %></td>
-            <td><%= number_to_currency(cart.quantity * cart.cosmetic.price) %></td>
+            <td><%= cart_to_currency(cart) %></td>
             <td>
               <a href="/carts/<%= cart.id %>" class="ml-2" data-method="delete"
                 data-confirm="商品を削除しますか？"><%= icon('fas', 'times-circle') %></a>
