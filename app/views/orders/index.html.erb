@@ -26,7 +26,9 @@
               <td><%= order.created_at.strftime("%F") %></td>
               <td><%= order.name %></td>
               <td><%= order.address %></td>
-              <td><%= order.status %></td>
+              <td>
+                <a href="#" class="badge badge-warning"><%= order.status %></a>
+              </td>
               <td><a href="/orders/<%= order.id %>" class="btn btn-primary">詳細</a></td>
             </tr>
           <% end %>

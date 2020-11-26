@@ -5,8 +5,9 @@ ruby '2.7.2'
 
 gem "devise"
 gem "activeadmin"
-gem 'bootstrap', '~> 5.0.0.alpha1'
+gem 'bootstrap', '~> 4.5.3'
 gem 'jquery-rails'
+
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'pry-rails'
 gem 'font-awesome-sass', '~> 5.15.1'
@@ -14,7 +15,6 @@ gem 'any_login'
 
 # developmentバージョンのみ使用可能
 gem 'rails-erd', group: :development
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 # Use sqlite3 as the database for Active Record

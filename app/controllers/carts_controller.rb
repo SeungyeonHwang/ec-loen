@@ -14,11 +14,11 @@ class CartsController < ApplicationController
     @shipping_fee = 250
 
     # 購買金額が10000以上の場合は配送料が無料になる
-    if @items_price >= 10000
-       @shipping_fee = 0
-    else
-      @shipping_fee = 250
-    end
+    @shipping_fee = if @items_price >= 10_000
+                      0
+                    else
+                      250
+                    end
 
     @total_price = @items_price + @shipping_fee
   end

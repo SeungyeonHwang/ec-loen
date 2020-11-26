@@ -71,13 +71,13 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (10.0.1.2)
+    autoprefixer-rails (10.0.2.0)
       execjs
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.4.9)
       msgpack (~> 1.0)
-    bootstrap (5.0.0.alpha1)
+    bootstrap (4.5.3)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
@@ -297,7 +297,7 @@ DEPENDENCIES
   activeadmin
   any_login
   bootsnap (>= 1.1.0)
-  bootstrap (~> 5.0.0.alpha1)
+  bootstrap (~> 4.5.3)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
