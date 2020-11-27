@@ -20,7 +20,15 @@
   <div class="row mt-5">
     <div class="col-12">
       <h3>お届け先住所</h3>
-      <form>
+      <form action="/orders/<%= @order.id %>/payments" method="POST" id="order_info_form">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input type="hidden" name="payer_id" id="payer_id">
+        <input type="hidden" name="merchant_id" id="merchant_id">
+        <input type="hidden" name="amount_value" id="amount_value">
+        <input type="hidden" name="status" id="status">
+        <input type="hidden" name="msg" id="msg">
+        <input type="hidden" name="resultFlg" id="resultFlg">
+
         <div class="form-group mt-2">
           <label for="">氏名</label>
           <input type="text" class="form-control" id="name" name="name">
@@ -64,7 +72,7 @@
         <div class="card-footer">
           <div class="d-flex justify-content-between mt-3">
             <h5 class="card-title">ご請求額</h5>
-            <p class="card-text"><%= number_to_currency(@order.total_price) %></p>
+            <p id="total_price" class="card-text"><%= number_to_currency(@order.total_price) %></p>
           </div>
         </div>
       </div>
@@ -105,7 +113,7 @@
           purchase_units: [{
             "amount": {
               "currency_code": "JPY",
-              "value": 1
+              "value": <%= @order.total_price %>
             }
           }]
         });
@@ -113,12 +121,42 @@
 
       onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
-          alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          var resultFlg = "000"
+          var message = details.payer.name.given_name + ' 様の決済が正常に完了しました。';
+
+          $("#payer_id").val(details.payer.payer_id)
+          $("#merchant_id").val(details.purchase_units[0].payee.merchant_id)
+          $("#amount_value").val(details.purchase_units[0].amount.value)
+          $("#status").val(details.status)
+          $("#msg").val(message)
+          $("#resultFlg").val(resultFlg)
+          $("#order_info_form").submit()
+
+          alert(message);
         });
       },
 
+      onCancel: function () {
+        var resultFlg = "001"
+        var message = "お客様のお支払いはキャンセルされました。";
+
+        $("#msg").val(message)
+        $("#resultFlg").val(resultFlg)
+        $("#order_info_form").submit()
+
+        alert(message);
+      },
+
       onError: function (err) {
+        var resultFlg = "002"
+        var message = "お客様のお支払いは失敗しました。";
+
+        $("#msg").val(message)
+        $("#resultFlg").val(resultFlg)
+        $("#order_info_form").submit()
+
         console.log(err);
+        alert(message);
       }
     }).render('#paypal-button-container');
   }
