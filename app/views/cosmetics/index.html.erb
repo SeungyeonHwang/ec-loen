@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <% @cosmetics.each do |cosmetic| %>
+            <div class="col-4 mt-5">
+                <div class="card" style="width: 18rem;">
+                    <% if cosmetic.image.attached? %>
+                        <img src="<%= url_for(cosmetic.image) %>%" class="card-img-top" alt="...">
+                    <% end %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= cosmetic.product_name %></h5>
+                        <p class="card-text"><%= number_to_currency(cosmetic.price) %></p>
+                        <a href="/cosmetics/<%= cosmetic.id %>" class="btn btn-primary">詳細</a>
+                    </div>
+                </div>
+
+            </div>
+        <% end %>
+    </div>
+</div>

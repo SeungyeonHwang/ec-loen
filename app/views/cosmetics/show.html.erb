@@ -1,0 +1,62 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">ホーム</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">詳細</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page"><%= @cosmetic.product_name %></li>
+        </ol>
+    </nav>
+    <div class="row mt-4">
+        <div class="col-6">
+            <% if @cosmetic.image.attached? %>
+            <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
+        <% else %>
+        <img src="https://via.placeholder.com/640x360?text=No+Image" class="img-fluid">
+    </div>
+    <% end %>
+    <div class="col-6">
+        <h3><%= @cosmetic.product_name %></h3>
+        <p><%= @cosmetic.desc %></p>
+        <hr>
+        <h5>説明</h5>
+        <p><%= @cosmetic.company_name %></p>
+        <hr>
+        <h4>必須<br>オッションを選択する</h4>
+        <form action="/carts" method="POST">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <input type="hidden" name="cosmetic_id" value="<%= @cosmetic.id %>">
+            <div calss="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <label for="quantity">数量</label>
+                <select class="form-control" name="quantity" id="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-dark">カートに入れる</button>
+        </form>
+    </div>
+</div>
+<script>
+
+    <% if flash[:notice].present? %>
+        result = confirm("<%= flash[:notice] %>")
+
+        if (result) {
+            location.href = "/carts"
+        }
+    <% end %>
+</script>

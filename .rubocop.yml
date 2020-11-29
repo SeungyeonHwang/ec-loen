@@ -1,0 +1,14 @@
+# Use only ascii symbols in comments.
+AsciiComments:
+ Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 1000
+
+Style/UnneededPercentQ:
+  Enabled: false

@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5">
+      <h2 class="text-center">注文履歴</h2>
+      <div class="alert alert-warning mt-5" role="alert">
+        通常の注文が表示されます。<br>
+        定期おトク便で5%OFF 詳細はこちら
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">注文日</th>
+            <th scope="col">名前</th>
+            <th scope="col">お届け先住所</th>
+            <th scope="col">状況</th>
+            <th scope="col">注文の詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at.strftime("%F") %></td>
+            <td><%= order.name %></td>
+            <td><%= order.address %></td>
+            <td>
+              <a href="#" class="badge badge-warning"><%= order.status %></a>
+            </td>
+            <% if order.before_payment? || order.order_failed? %>
+            <td><a href="/orders/<%= order.id %>" class="btn btn-primary">詳細</a></td>
+            <% else %>
+            <td></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
