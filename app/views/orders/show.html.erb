@@ -24,32 +24,36 @@
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <input type="hidden" name="payer_id" id="payer_id">
         <input type="hidden" name="merchant_id" id="merchant_id">
+        <input type="hidden" name="details_id" id="details_id">
         <input type="hidden" name="amount_value" id="amount_value">
-        <input type="hidden" name="status" id="status">
-        <input type="hidden" name="msg" id="msg">
+        <input type="hidden" name="response" id="response">
         <input type="hidden" name="resultFlg" id="resultFlg">
+        <input type="hidden" name="msg" id="msg">
 
-        <div class="form-group mt-2">
-          <label for="">氏名</label>
-          <input type="text" class="form-control" id="name" name="name">
+        <div class="form-group">
+          <label for="">氏名</label>&nbsp;&nbsp;<span id="nameValid" style="color:red"></span>
+          <input type="text" class="form-control" id="name" name="name" onblur="check_form()">
         </div>
 
-        <div class="form-group mt-2">
-          <label for="">郵便番号 </label>
-          <input type="text" class="form-control" id="phone">
+        <div class="form-group">
+          <label for="">電話番号</label>&nbsp;&nbsp;<span id="phoneValid" style="color:red"></span>
+          <input type="text" class="form-control" id="phone" onblur="check_form()">
         </div>
 
-        <div class="form-group mt-2">
-          <label for="">Eメール</label>
-          <input type="text" class="form-control" id="email">
+        <div class="form-group">
+          <label for="">Eメール</label>&nbsp;&nbsp;<span id="emailValid" style="color:red"></span>
+          <input type="text" name="email" id="email" class="form-control" onblur="check_form()">
+          <label type="hidden" id="lblError" style="color:red"></label>
         </div>
 
-        <div class="form-group mt-2">
-          <label for="" class="d-block">住所</label>
-          <input type="text" class="form-control mt-2" name="zipcode" maxlength="9" type="tel"
-            onchange="javascript:getAddName(this.value)" placeholder="郵便番号">
-          <input type="text" class="form-control mt-2" id="add_name" name="address" placeholder="住所1">
-          <input type="text" class="form-control mt-2" id="adress_1" name="adress_1" placeholder="住所2">
+        <div class="form-group">
+          <label for="">住所</label>&nbsp;&nbsp;<span id="postalValid" style="color:red"></span>
+          <input type="text" class="form-control mt-2" name="zipcode" id="zipcode" maxlength="9" type="tel"
+            onchange="javascript:getAddName(this.value)" onblur="check_form()" placeholder="郵便番号">
+          <input type="text" class="form-control mt-2" id="add_name" name="address1" onchange="check_form()"
+            placeholder="住所1">
+          <input type="text" class="form-control mt-2" id="adress" name="adress2" onblur="check_form()"
+            placeholder="住所2">
         </div>
       </form>
     </div>
@@ -80,6 +84,12 @@
   </div>
   <div class="row my-5">
     <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <a href="#" class="btn btn-warning w-100 shadow" id="payment_btn">決済する</a>
+        </div>
+      </div>
+
       <div id="smart-button-container">
         <div style="text-align: center;">
           <div id="paypal-button-container"></div>
@@ -88,6 +98,97 @@
     </div>
   </div>
 </div>
+<script>
+  check_form();
+
+  function check_form() {
+
+    is_name = $("#name").val()
+    is_phone = $("#phone").val()
+    is_email = $("#email").val()
+    is_post_code = $("#zipcode").val()
+    is_address_1 = $("#add_name").val()
+    is_address_2 = $("#adress").val()
+
+    nameValid = document.getElementById('nameValid')
+    phoneValid = document.getElementById('phoneValid');
+    emailValid = document.getElementById('emailValid');
+    postalValid = document.getElementById('postalValid');
+
+    if (!is_name) {
+      $("#nameValid").html("❗️ 名前を入力してください。");
+      $("#name").css('border-color', 'red');
+    } else {
+      $("#nameValid").html("");
+      $("#name").css('border-color', '#ced4da');
+    }
+
+    if (!is_phone) {
+      $("#phoneValid").html("❗️ 電話番号を入力してください。");
+      $("#phone").css('border-color', 'red');
+    } else {
+      $("#phoneValid").html("");
+      $("#phone").css('border-color', '#ced4da');
+    }
+
+    if (!is_email) {
+      $("#emailValid").html("❗️ Eメールを入力してください。");
+      $("#email").css('border-color', 'red');
+    } else {
+      $("#emailValid").html("");
+      $("#email").css('border-color', '#ced4da');
+      validateForm()
+    }
+
+    if (!is_post_code) {
+      $("#postalValid").html("❗️ 郵便番号を入力してください。");
+      $("#zipcode").css('border-color', 'red');
+    } else if (!is_address_1) {
+      $("#postalValid").html("❗️ 郵便番号の形式が正しくありません。");
+      $("#zipcode").css('border-color', 'red');
+    } else if (!is_address_2) {
+      $("#postalValid").html("❗️ 建物名(ビル名)及び部屋番号を入力してください。");
+      $("#zipcode").css('border-color', '#ced4da');
+      $("#adress").css('border-color', 'red');
+    } else {
+      $("#postalValid").html("");
+      $("#zipcode").css('border-color', '#ced4da');
+      $("#adress").css('border-color', '#ced4da');
+    }
+
+    if (!(nameValid.innerText || phoneValid.innerText || emailValid.innerText || postalValid.innerText)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  $("#payment_btn").on("click", function (e) {
+    e.preventDefault();
+    checked_data = check_form();
+    if (checked_data) {
+      document.getElementById("payment_btn").style.display = "none";
+      initPayPalButton();
+    } else {
+      alert("赤色の❗️印が付いている項目は入力必須です");
+    }
+  })
+
+  function validateForm() {
+    var x = document.getElementById("email").value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+      $("#emailValid").html("❗️ Eメールの形式が正しくありません");
+      $("#email").css('border-color', 'red');
+      return true
+    } else {
+      $("#emailValid").html("");
+      $("#email").css('border-color', '#ced4da');
+      return false
+    }
+  }
+</script>
 <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=JPY" data-sdk-integration-source="button-factory">
 </script>
 <script>
@@ -125,9 +226,9 @@
           var message = details.payer.name.given_name + ' 様の決済が正常に完了しました。';
 
           $("#payer_id").val(details.payer.payer_id)
+          $("#details_id").val(details.id)
           $("#merchant_id").val(details.purchase_units[0].payee.merchant_id)
           $("#amount_value").val(details.purchase_units[0].amount.value)
-          $("#status").val(details.status)
           $("#msg").val(message)
           $("#resultFlg").val(resultFlg)
           $("#order_info_form").submit()
@@ -138,7 +239,7 @@
 
       onCancel: function () {
         var resultFlg = "001"
-        var message = "お客様のお支払いはキャンセルされました。";
+        var message = "お客様のお支払いはキャンセルされました。"
 
         $("#msg").val(message)
         $("#resultFlg").val(resultFlg)
@@ -149,18 +250,16 @@
 
       onError: function (err) {
         var resultFlg = "002"
-        var message = "お客様のお支払いは失敗しました。";
 
-        $("#msg").val(message)
+        $("#msg").val(err)
         $("#resultFlg").val(resultFlg)
         $("#order_info_form").submit()
 
         console.log(err);
-        alert(message);
+        alert("お客様のお支払いは失敗しました。");
       }
     }).render('#paypal-button-container');
   }
-  initPayPalButton();
 </script>
 <script>
   // 住所検索（郵便番号利用）
@@ -178,5 +277,6 @@
       _addFormatted += $getAdd.results[0].address3; // 町域名
     }
     document.getElementById("add_name").value = _addFormatted;
+    check_form();
   };
 </script>

@@ -9,3 +9,6 @@ Documentation:
 
 Metrics/MethodLength:
   Max: 1000
+
+Style/UnneededPercentQ:
+  Enabled: false

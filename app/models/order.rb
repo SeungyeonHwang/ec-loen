@@ -4,6 +4,11 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :cosmetics, through: :order_items
 
+  # 1つの注文に1つの支払いのみ存在させる設定(単数)
+  # nullifyはOrderが削除された時、Id値がNullになる → 状況によってSoftDeleteがいい時もある。
+  has_one :payment, dependent: :nullify
+
+  # !でstatusを変更できるようにするコード
   enum status: %i[before_payment processing completed order_failed]
 
   def product_price
