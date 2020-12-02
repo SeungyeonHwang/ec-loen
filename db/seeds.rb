@@ -21,8 +21,11 @@
 # Credit Card CSV
 # 111
 
-if Rails.env.development?
-  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-end
-User.create(email: 'test@sample.co.jp', password: '12341234', password_confirmation: '12341234')
-Cosmetic.set_dummy_data
+# ユーザーと管理者IDセット
+# if Rails.env.development?
+#   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+# end
+# User.create(email: 'test@sample.co.jp', password: '12341234', password_confirmation: '12341234')
+
+# ダミーデータ作成
+# Cosmetic.set_dummy_data
