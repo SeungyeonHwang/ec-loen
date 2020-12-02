@@ -35,9 +35,14 @@ class CartsController < ApplicationController
     cart.verified_save
 
     # redirect_backで使えるAlert。（Create成功を前提にする）
-    flash[:notice] = 'カートに追加されました。レジに進みますか？'
+    # flash[:notice] = 'カートに追加されました。レジに進みますか？'
+    @notice = 'カートに追加されました。レジに進みますか？'
 
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
+    # cart->create.js.erb
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy

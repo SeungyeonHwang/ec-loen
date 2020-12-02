@@ -1,37 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">LOEN</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/"><img src="<%= asset_path("loen.png") %>" class="logo" alt="..."></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+      aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarnavaltmarkup"
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarnavaltmarkup"
         navbarNavAltMarkup="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" href="#">メーカー</a>
-            <a class="nav-link active" href="/cosmetics">ショッピング</a>
-            <a class="nav-link" href="#">オススメ</a>
-            <a class="nav-link" href="#">ニュース</a>
-            <%#　ログインしているユーザが見れる部分  %>
-            <% if user_signed_in? %>
-            <a class="nav-item nav-link" href="/carts">
+          <a class="nav-link" href="#">メーカー</a>
+          <a class="nav-link active" href="/cosmetics">ショッピング</a>
+          <a class="nav-link" href="#">オススメ</a>
+          <a class="nav-link" href="#">ニュース</a>
+          <%# ログインしているユーザが見れる部分  %>
+          <% if user_signed_in? %>
+          <a class="nav-item nav-link" href="/carts">
             <%= icon('fas', 'shopping-cart') %>
-            </a>
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.email %>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/mypage">マイページ</a>
-                    <a class="dropdown-item" href="/users/sign_out" data-method="delete">ログアウト</a>
-                </div>
+          </a>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">
+              <%= current_user.email %></a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/mypage">マイページ</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/users/sign_out" data-method="delete">ログアウト</a>
             </div>
-            <%#　ログインしてないユーザが見れる部分  %>
-            <% else %>
-            <a class="nav-link" href="/users/sign_in">ログイン</a>
-            <a class="nav-link" href="/users/sign_up">会員加入</a>
-            <% end %>
+          </div>
+
+          <%# ログインしてないユーザが見れる部分  %>
+          <% else %>
+
+          <button class="btn btn-secondary my-2 my-sm-0 mr-2 ml-2"
+            onclick="location.href='/users/sign_in' ">ログイン</button>
+          <button type="button" class="btn btn-danger" onclick="location.href='/users/sign_up' ">会員加入</button>
+
+          <% end %>
 
         </div>
-    </div>
-</nav>
+      </div>
+  </nav>

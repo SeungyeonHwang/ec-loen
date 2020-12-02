@@ -7,6 +7,7 @@ gem "devise"
 gem "activeadmin"
 gem 'bootstrap', '~> 4.5.3'
 gem 'jquery-rails'
+gem 'bootswatch'
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'pry-rails'

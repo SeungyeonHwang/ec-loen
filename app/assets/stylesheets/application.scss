@@ -1,3 +1,18 @@
-@import "bootstrap";
+.logo {
+  width: auto; height: auto;
+  max-width: 200px;
+  max-height: 80px;
+}
+
+.navbar-nav {
+  font-size: 1.3em;
+}
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+@import "bootswatch/lumen/variables";
+@import "bootstrap";
+@import "bootswatch/lumen/bootswatch";
+
+

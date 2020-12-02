@@ -20,7 +20,7 @@ class PaymentsController < ApplicationController
           payer_id: params[:payer_id],
           amount: params[:amount_value]
         )
-
+        
         order.processing!
 
       elsif params[:resultFlg] == "001"
@@ -32,5 +32,10 @@ class PaymentsController < ApplicationController
       end
 
       redirect_to '/orders'
+
+      # Ajax用のリダイレクト
+      # respond_to do |format|
+      #   format.js -> create.js.erb(payments直下)にデータを投げる
+      # end
     end
 end
