@@ -28,7 +28,7 @@ class Cosmetic < ApplicationRecord
       )
 
       # ActiveStroageのイメージ作成機能
-      sample_image = open("https://picsum.photos/150/250?random=#{i}")
+      sample_image = open("https://picsum.photos/700/400?random=#{i}")
 
       cosmetic.image.attach(io: sample_image, filename: "sample_#{i}.jpg")
       cosmetic.save
