@@ -4,6 +4,9 @@ ja:
     models:
       admin_user: 管理者
       cosmetic: コスメ
+      user: ユーザー
+      news: お知らせ
+      blog: ビューティコラム
     attributes:
       admin_user:
         email: 管理者メール

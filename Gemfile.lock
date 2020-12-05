@@ -6,6 +6,12 @@ GIT
     faker (2.14.0)
       i18n (>= 1.6, < 2)
 
+GIT
+  remote: https://github.com/vigetlabs/active_material.git
+  revision: ea09eaccf07c49508a3a5e5b3dbfbf41a5f85a83
+  specs:
+    active_material (1.4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -296,6 +302,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_material!
   activeadmin
   any_login
   bootsnap (>= 1.1.0)
