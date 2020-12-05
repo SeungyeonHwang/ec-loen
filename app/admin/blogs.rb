@@ -1,8 +1,8 @@
 ActiveAdmin.register Blog do
-  form html: { multipart: true } do |f|
+  form do |f|
     f.inputs do
       f.input :title 
-      f.input :image, as: :file, input_html: { multiple: true }
+      f.input :image, as: :file
       f.input :content
       f.input :tag
     end
@@ -12,13 +12,11 @@ ActiveAdmin.register Blog do
   show do
     attributes_table do
       row :title
-      row :image do
-        div do
-          blog.image.each do |img|
-            div do
-              image_tag url_for(img), size: "200x200"
-            end
-          end
+      row :image do |blog|
+        if blog.image.attached?
+          image_tag url_for(blog.image), class: "small_img"
+        else
+          "イメージなし"
         end
       end
       row :content

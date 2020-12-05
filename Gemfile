@@ -14,6 +14,7 @@ gem 'pry-rails'
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'any_login'
 gem "active_material", github: "vigetlabs/active_material"
+gem 'activeadmin_addons'
 
 # developmentバージョンのみ使用可能
 gem 'rails-erd', group: :development

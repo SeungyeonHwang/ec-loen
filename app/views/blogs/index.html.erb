@@ -1,29 +1,41 @@
+
+<h1><%= @test %></h1>
+
+
 <div class="col-12" style="font-size: 1.2em;">
   <div class="mt-5 my-4">
     <h2><%= icon('fas', 'paperclip') %> ビューティコラム</h2>
     <div class="tags my-5">
-      <span class="badge badge-secondary">Secondary</span>
+      <div class="card border-secondary mb-3">
+        <div class="card-header">キーワード一覧</div>
+        <div class="card-body">
+          <% @tags.each do |tag| %>
+          <span class="badge badge-secondary mx-2 pd-2"><a id="blog_tag" href="/blogs?tag=<%= tag.tag %>"><%= tag.tag %></a></span>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="container my-5">
-      <div class="row">
-
-        <div class="col-lg-4 col-sm-6 mb-4">
-          <div class="widget single-news">
-            <div class="image">
-              
-              <div class="field">
-                <img src="" class="img-responsive">
-              </div>
-              <span class="gradient"></span>
+    <h4>✨ ビューティコラムの記事一覧</h4>
+    <small class="text-muted">記事表示件数：<%= @blogs.count %>件</small>
+    <hr>
+    <div class="row">
+      <% @blogs.each do |blog| %>
+      <div class="col-lg-6 col-sm-6 mb-4">
+        <div class="widget single-news">
+          <div class="image">
+            <div class="field">
+              <img src="<%= url_for(blog.image) %>" class="img-responsive">
             </div>
-            <div class="details">
-              <div class="category"><a href="">분류</a></div>
-              <h3><a href="">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-              <time>Today, 18 August</time>
-            </div>
+            <span class="gradient"></span>
+          </div>
+          <div class="details">
+            <div class="category"><a href=""><%= blog.tag %>></a></div>
+            <h1><a href="/blogs/<%= blog.id %>"><%= blog.title %></a></h1>
+            <time id="time"><%= blog.created_at.strftime("%F") %></time>
           </div>
         </div>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
