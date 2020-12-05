@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12 mx-auto " style="font-size: 1.3em;">
+
+    <p class="text-muted mt-5"><%= @news.created_at.strftime("%F") %></p>
+    <h1><%= @news.title %></h1>
+    <hr>
+    <div class="my-5">
+      <h4><pre><%= @news.content %></h4>
+  </div>
+    <hr>
+    <div class="text-right mt-4">
+      <a href="/news">その他お知らせへ<span class="my-5" style="color: red;"> ＞</span></a>
+    </div>
+  </div>
+</div>

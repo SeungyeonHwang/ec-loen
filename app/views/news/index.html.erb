@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12" style="font-size: 1.2em;">
+    <div class="mt-5 my-4">
+      <h2><%= icon('far', 'newspaper') %> お知らせ</h2>
+    </div>
+    <table class="table table-hover" style="margin-bottom: 30%;">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 20%">No.</th>
+          <th scope="col" style="width: 60%;">タイトル</th>
+          <th scope="col" style="width: 20%">作成日</th>
+        </tr>
+      </thead>
+      <tbody >
+        <% @news.each do |news|%>
+        <tr>
+          <th scope="row"><%= news.id %></th>
+          <td ><a href="/news/<%= news.id %>"><%= news.title %></a></td>
+          <td><%= news.created_at.strftime("%F") %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

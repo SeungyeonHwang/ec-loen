@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_28_124236) do
+ActiveRecord::Schema.define(version: 2020_12_05_110731) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 2020_11_28_124236) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "tag"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
     t.integer "cosmetic_id"
@@ -78,6 +87,13 @@ ActiveRecord::Schema.define(version: 2020_11_28_124236) do
     t.datetime "updated_at", null: false
     t.decimal "price"
     t.boolean "is_open", default: true
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -107,11 +123,11 @@ ActiveRecord::Schema.define(version: 2020_11_28_124236) do
     t.integer "order_id"
     t.json "response"
     t.string "payment_uid"
-    t.string "merchant_id"
-    t.string "payer_id"
     t.decimal "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "merchant_id"
+    t.string "payer_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
