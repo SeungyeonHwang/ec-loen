@@ -15,7 +15,7 @@
         <% @news.each do |news|%>
         <tr>
           <th scope="row"><%= news.id %></th>
-          <td ><%= news.title %></td>
+          <td ><a href="/news/<%= news.id %>"><%= news.title %></a></td>
           <td><%= news.created_at.strftime("%F") %></td>
         </tr>
         <% end %>

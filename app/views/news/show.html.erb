@@ -1,43 +1,15 @@
-<div class="container bootstrap snippets bootdey">
-    <div class="col-sm-4">
-      <div class="widget single-news">
-        <div class="image">
-          <img src="https://via.placeholder.com/300x200/FFB6C1/000000" class="img-responsive">
-          <span class="gradient"></span>
-        </div>
-        <div class="details">
-          <div class="category"><a href="">News</a></div>
-          <h3><a href="">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-          <time>Today, 18 August</time>
-        </div>
-      </div>
+<div class="row">
+  <div class="col-12 mx-auto " style="font-size: 1.3em;">
+
+    <p class="text-muted mt-5"><%= @news.created_at.strftime("%F") %></p>
+    <h1><%= @news.title %></h1>
+    <hr>
+    <div class="my-5">
+      <h4><pre><%= @news.content %></h4>
+  </div>
+    <hr>
+    <div class="text-right mt-4">
+      <a href="/news">その他お知らせへ<span class="my-5" style="color: red;"> ＞</span></a>
     </div>
-    
-    <div class="col-sm-4">
-      <div class="widget single-news">
-        <div class="image">
-          <img src="https://via.placeholder.com/300x200/87CEFA/000000" class="img-responsive">
-          <span class="gradient"></span>
-        </div>
-        <div class="details">
-          <div class="category"><a href="">News</a></div>
-          <h3><a href="">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-          <time>Today, 18 August</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-sm-4">
-      <div class="widget single-news">
-        <div class="image">
-          <img src="https://via.placeholder.com/300x200/FF7F50/000000" class="img-responsive">
-          <span class="gradient"></span>
-        </div>
-        <div class="details">
-          <div class="category"><a href="">News</a></div>
-          <h3><a href="">More rain at salt flats delays racer's pursuit of land speed record</a></h3>
-          <time>Today, 18 August</time>
-        </div>
-      </div>
-    </div>
+  </div>
 </div>
