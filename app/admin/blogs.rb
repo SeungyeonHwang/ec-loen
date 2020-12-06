@@ -3,7 +3,7 @@ ActiveAdmin.register Blog do
     f.inputs do
       f.input :title 
       f.input :image, as: :file
-      f.input :content
+      f.input :content, :as => :ckeditor
       f.input :tag
     end
     f.actions

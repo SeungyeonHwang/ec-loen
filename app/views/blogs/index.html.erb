@@ -10,7 +10,7 @@
         <div class="card-header">キーワード一覧</div>
         <div class="card-body">
           <% @tags.each do |tag| %>
-          <span class="badge badge-secondary mx-2 pd-2"><a id="blog_tag" href="/blogs?tag=<%= tag.tag %>"><%= tag.tag %></a></span>
+          <span class="badge badge-secondary mx-2 pd-2" style="padding: 0.60em 0.5em;"><a id="blog_tag" href="/blogs?tag=<%= tag.tag %>"><%= tag.tag %></a></span>
           <% end %>
         </div>
       </div>

@@ -149,57 +149,68 @@
     <h2>
       <p>✨ ビューティコラム新着情報</p>
     </h2>
+    <%# カードItem %>
+
     <hr class="featurette-divider">
-    <% @blogs.each do |blog| %>
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading"><%= blog.title %> <span class="text-muted">It’ll blow your mind.</span>
+      <div id=hover-effect-1 class="col-md-7" style=" cursor: pointer;"
+        onclick="location.href='/blogs/<%= @blogs[0].id %>'">
+        <div class="mb-2">
+          <span class="text-muted">Beauty Column</span>
+          <span class="text float-right"><%= @blogs[0].created_at.strftime("%F") %></span>
+        </div>
+        <h2 class="featurette-heading my-4"><%= @blogs[0].title %>
         </h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-          semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-          commodo.</p>
+      <div class = "wrap">
+        <p class="lead"><%= truncate(sanitize(@blogs[0].content, tags: []), length: 200) %></p></div>
+        <div class="text-right mt-3">
+          <a href='#'>すべて読む<span class="my-5" style="color: pink;"> ＞</span></a>
+        </div>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-          height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-          role="img" aria-label="Placeholder: 500x500">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img src="<%= url_for(@blogs[0].image) %>" class="img-fluid" style="width: 450px; height: 450px;"
+          alt="Responsive image">
       </div>
     </div>
+    <%# End %>
     <hr class="featurette-divider">
     <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading"><%= blog.title %> <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-          semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-          commodo.</p>
+      <div id=hover-effect-2 class="col-md-7 order-md-2" style=" cursor: pointer;"
+        onclick="location.href='/blogs/<%= @blogs[1].id %>'">
+        <div class="mb-2">
+          <span class="text-muted">Beauty Column</span>
+          <span class="text float-right"><%= @blogs[1].created_at.strftime("%F") %></span>
+        </div>
+        <h2 class="featurette-heading"><%= @blogs[1].title %></h2>
+            <div class = "wrap">
+        <p class="lead"><%= truncate(sanitize(@blogs[1].content, tags: []), length: 200) %></p></div>
+        <div class="text-right mt-3">
+          <a href="#">すべて読む<span class="my-5" style="color: pink;"> ＞</span></a>
+        </div>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-          height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-          role="img" aria-label="Placeholder: 500x500">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img src="<%= url_for(@blogs[1].image) %>" class="img-fluid" style="width: 450px; height: 450px;"
+          alt="Responsive image">
       </div>
     </div>
     <hr class="featurette-divider">
     <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading"><%= blog.title %> <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-          semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-          commodo.</p>
+      <div id=hover-effect-3 class="col-md-7" style=" cursor: pointer;"
+        onclick="location.href='/blogs/<%= @blogs[2].id %>'">
+        <div class="mb-2">
+          <span class="text-muted">Beauty Column</span>
+          <span class="text float-right"><%= @blogs[2].created_at.strftime("%F") %></span>
+        </div>
+        <h2 class="featurette-heading"><%= @blogs[2].title %>
+        </h2>
+            <div class = "wrap">
+        <p class="lead"><%= truncate(sanitize(@blogs[2].content, tags: []), length: 200) %></p></div>
+        <div class="text-right mt-3">
+          <a href="#">すべて読む<span class="my-5" style="color: pink;"> ＞</span></a>
+        </div>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-          height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-          role="img" aria-label="Placeholder: 500x500">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img src="<%= url_for(@blogs[2].image) %>" class="img-fluid" style="width: 450px; height: 450px;"
+          alt="Responsive image">
       </div>
     </div>
-    <% end %>

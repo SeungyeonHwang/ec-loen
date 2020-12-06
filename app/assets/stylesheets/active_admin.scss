@@ -3,7 +3,7 @@ $am-theme-primary: #124eb6dd;
 @import "active_material";
 
 .small_img {
-    max-width: 130px;
+    max-height: 300px !important;
 }
 
 .col-title {
@@ -12,11 +12,6 @@ $am-theme-primary: #124eb6dd;
 
 .col-id {
     width: 10%;
-}
-
-a:link,
-a:visited {
-    color: #00102de7;
 }
 
 .menu_item {
@@ -34,3 +29,8 @@ a:visited {
 .col-tag {
     width: 6%;
 }
+
+.cke_chrome {
+    width: 79.5% !important;
+    overflow: hidden;
+  }

@@ -2,7 +2,13 @@
 *= require active_admin
 *= require blogs
 *= require news
+*= require home
+*= require_self
  */
+
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
 
 .logo {
   width: auto; height: auto;

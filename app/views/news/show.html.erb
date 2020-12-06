@@ -5,11 +5,11 @@
     <h1><%= @news.title %></h1>
     <hr>
     <div class="my-5">
-      <h4><pre><%= @news.content %></h4>
-  </div>
+      <%= sanitize(@news.content) %>
+    </div>
     <hr>
     <div class="text-right mt-4">
-      <a href="/news">その他お知らせへ<span class="my-5" style="color: red;"> ＞</span></a>
+      <a href="/news">その他お知らせへ<span class="my-5" style="color: pink;"> ＞</span></a>
     </div>
   </div>
 </div>
