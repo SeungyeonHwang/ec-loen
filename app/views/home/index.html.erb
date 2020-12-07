@@ -150,7 +150,6 @@
       <p>✨ ビューティコラム新着情報</p>
     </h2>
     <%# カードItem %>
-
     <hr class="featurette-divider">
     <div class="row featurette">
       <div id=hover-effect-1 class="col-md-7" style=" cursor: pointer;"
@@ -168,8 +167,7 @@
         </div>
       </div>
       <div class="col-md-5">
-        <img src="<%= url_for(@blogs[0].image) %>" class="img-fluid" style="width: 450px; height: 450px;"
-          alt="Responsive image">
+      <a href="/blogs/<%= @blogs[0].id %>"><img src="<%= url_for(@blogs[0].image) %>" id="blog_img-1" class="img-fluid" alt="Responsive image"></a>
       </div>
     </div>
     <%# End %>
@@ -189,8 +187,7 @@
         </div>
       </div>
       <div class="col-md-5 order-md-1">
-        <img src="<%= url_for(@blogs[1].image) %>" class="img-fluid" style="width: 450px; height: 450px;"
-          alt="Responsive image">
+        <a href="/blogs/<%= @blogs[1].id %>"><img src="<%= url_for(@blogs[1].image) %>" id="blog_img-1" class="img-fluid" alt="Responsive image"></a>
       </div>
     </div>
     <hr class="featurette-divider">
@@ -210,7 +207,6 @@
         </div>
       </div>
       <div class="col-md-5">
-        <img src="<%= url_for(@blogs[2].image) %>" class="img-fluid" style="width: 450px; height: 450px;"
-          alt="Responsive image">
+        <a href="/blogs/<%= @blogs[2].id %>"><img src="<%= url_for(@blogs[2].image) %>" id="blog_img-1" class="img-fluid" alt="Responsive image"></a>
       </div>
     </div>
