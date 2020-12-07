@@ -48,6 +48,16 @@
             <br>
 
             <button type="submit" class="btn btn-outline-dark">カートに入れる</button>
-            
+        </form>
+
+        <form action="/cosmetic" method="PATCH" data-remote="true">
+            <div id="star"></div>
+        
+        <button type="submit" class="btn btn-outline-dark">Rating</button>
         </form>
     </div>
+<script>
+$('#star').raty({
+  path: '/images'
+});
+</script>

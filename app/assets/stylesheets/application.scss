@@ -6,27 +6,44 @@
 *= require_self
  */
 
- @import "font-awesome-sprockets";
- @import "font-awesome";
- 
- @import "bootswatch/lumen/variables";
- @import "bootstrap";
- @import "bootswatch/lumen/bootswatch";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "bootswatch/lumen/variables";
+@import "bootstrap";
+@import "bootswatch/lumen/bootswatch";
 
 
-a:link { color: black; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: rgb(27, 27, 176); text-decoration: underline;}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(27, 27, 176);
+  text-decoration: underline;
+}
 
 .btn {
   color: white !important;
 }
 
-.btn-secondary{
+.btn-secondary {
   color: black !important;
 }
+
+.btn-outline-dark {
+  color: #555 !important;
+}
+
 .logo {
-  width: auto; height: auto;
+  width: auto;
+  height: auto;
   max-width: 200px;
   max-height: 80px;
 }
@@ -37,8 +54,5 @@ a:hover { color: rgb(27, 27, 176); text-decoration: underline;}
 
 .img-fluid {
   max-width: 100%;
-  height: auto; 
+  height: auto;
 }
-
-
-

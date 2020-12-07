@@ -24,6 +24,8 @@ ActiveAdmin.register Cosmetic do
     column :Open do |ids|
       ids.is_open
     end
+    column :rating
+    column :count
     actions
   end
 
@@ -74,6 +76,8 @@ ActiveAdmin.register Cosmetic do
       row :product_name
       row :company_name
       row :desc
+      row :rating
+      row :count
     end
   end
 end

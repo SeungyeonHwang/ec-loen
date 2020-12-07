@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :cosmetics, only: %i[index show]
+  resources :cosmetics, only: %i[index show update]
 
   resources :carts, only: %i[create index destroy]
 
