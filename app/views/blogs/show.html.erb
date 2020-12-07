@@ -1,2 +1,24 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<div class="col-lg-8 col-md-8 mx-auto">
+  <div class="my-3">
+    <span class="text-muted"><%= @blogs.tag %></span>
+    <span class="text-muted float-right"><%= @blogs.created_at.strftime("%F") %></span>
+    <h3 class="featurette-heading my-4"><%= @blogs.title %></h3>
+    <hr class="featurette-divider">
+    <div style="text-align: center;">
+      <img src="<%= url_for(@blogs.image) %>" class="thumbnail" alt="Responsive image">
+    </div>
+     <p class="lead mt-3"><%== @blogs.content %></p>
+
+    <hr class="featurette-divider">
+
+    <div class="clearfix">
+
+      <a class="btn btn-warning float-left" href="/blogs/<%= @blogs.prev.id if @blogs.prev.present? %>">&larr; Previous
+      <span class="d-none d-md-inline"> Post</span></a>
+
+      <a class="btn btn-warning float-right" href="/blogs/<%= @blogs.next.id if @blogs.next.present? %>">Next
+      <span class="d-none d-md-inline"> Post</span> &rarr;</a>
+
+    </div>
+  </div>
+</div>
