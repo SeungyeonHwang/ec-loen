@@ -12,11 +12,13 @@
     <hr class="featurette-divider">
 
     <div class="clearfix">
-      <a class="btn btn-warning float-left" href="/blogs/<%= @blogs.prev.id %>">&larr; Previous
+
+      <a class="btn btn-warning float-left" href="/blogs/<%= @blogs.prev.id if @blogs.prev.present? %>">&larr; Previous
       <span class="d-none d-md-inline"> Post</span></a>
 
-      <a class="btn btn-warning float-right" href="/blogs/<%= @blogs.next.id %>">Next
+      <a class="btn btn-warning float-right" href="/blogs/<%= @blogs.next.id if @blogs.next.present? %>">Next
       <span class="d-none d-md-inline"> Post</span> &rarr;</a>
+
     </div>
   </div>
 </div>

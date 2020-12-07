@@ -1,15 +1,30 @@
 /*
 *= require active_admin
+*= require home
 *= require blogs
 *= require news
-*= require home
 *= require_self
  */
 
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+ 
+ @import "bootswatch/lumen/variables";
+ @import "bootstrap";
+ @import "bootswatch/lumen/bootswatch";
+
+
 a:link { color: black; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
-a:hover { color: blue; text-decoration: underline;}
+a:hover { color: rgb(27, 27, 176); text-decoration: underline;}
 
+.btn {
+  color: white !important;
+}
+
+.btn-secondary{
+  color: black !important;
+}
 .logo {
   width: auto; height: auto;
   max-width: 200px;
@@ -24,11 +39,6 @@ a:hover { color: blue; text-decoration: underline;}
   max-width: 100%;
   height: auto; 
 }
-@import "font-awesome-sprockets";
-@import "font-awesome";
 
-@import "bootswatch/lumen/variables";
-@import "bootstrap";
-@import "bootswatch/lumen/bootswatch";
 
 
