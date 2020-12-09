@@ -3,8 +3,9 @@ ja:
   activerecord:
     models:
       admin_user: 管理者
+      order: 注文管理
       cosmetic: コスメ
-      user: ユーザー
+      user: ユーザー管理
       news: お知らせ
       blog: ビューティコラム
     attributes:
