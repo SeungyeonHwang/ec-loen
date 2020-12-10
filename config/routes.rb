@@ -6,8 +6,16 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :cosmetics, only: %i[index show update]
-
+  resources :cosmetics, only: %i[index show] do
+    member do
+      post '/comments' => 'cosmetics#create_comment'
+    end
+    collection do
+      delete '/comments/:comment_id' => 'cosmetics#destroy_comment'
+      patch '/comments/:comment_id' => 'cosmetics#update_comment'
+    end
+  end
+  
   resources :carts, only: %i[create index destroy]
 
   resources :orders, only: %i[create show index] do

@@ -1,0 +1,21 @@
+$('.comment-list').prepend(`
+<li class="media comment-<%= @comment.id%>">
+    <a href="#" class="pull-left">
+        <img src="<%= asset_path("profile.png") %>" alt="" class="img-circle">
+    </a>
+    <div class="media-body">
+        <span class="text-muted pull-right">
+            <small class="text-muted"><%= time_ago_in_words(@comment.created_at) %></small>
+        </span>
+        <strong class="text-success"><%= @comment.user_email %></strong>
+        <p>
+            <span class="comment-detail-<%= @comment.id %>"><%= @comment.contents %></span>
+        </p>
+        <div class="button_edit mb-2">
+            <button data-id="<%= @comment.id %>" class="btn btn-primary edit-comment">修正</button>
+            <button data-id="<%= @comment.id %>" class="btn btn-primary destroy-comment">削除</button>
+        </div>
+</li>`);
+
+$('.comment-contents').val('');
+alert("コメントを残しました。");

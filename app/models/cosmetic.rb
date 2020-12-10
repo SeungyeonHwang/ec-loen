@@ -17,6 +17,8 @@ class Cosmetic < ApplicationRecord
 
   has_many :order_items, dependent: :destroy
   has_many :orders, through: :order_items
+  
+  has_many :comments, dependent: :destroy
 
   #ダミーデーター作成
   def self.set_dummy_data

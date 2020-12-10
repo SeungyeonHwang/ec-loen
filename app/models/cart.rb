@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
   belongs_to :user
   belongs_to :cosmetic
-
+''
   # carts_controllerの処理をメソッド化
   def verified_save
     user_carts = user.carts

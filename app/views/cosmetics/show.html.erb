@@ -1,22 +1,23 @@
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="#">ホーム</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="#">詳細</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page"><%= @cosmetic.product_name %></li>
-        </ol>
-    </nav>
-    <div class="row mt-4">
-        <div class="col-6">
-            <% if @cosmetic.image.attached? %>
-            <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
-        <% else %>
-        <img src="https://via.placeholder.com/700x400?text=No+Image" class="img-fluid">
-    </div>
+<nav aria-label="breadcrumb" class="my-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">ホーム</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/cosmetics/">ショッピング</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @cosmetic.product_name %></li>
+    </ol>
+</nav>
+
+<div class="row ">
+    <div class="col-6">
+        <% if @cosmetic.image.attached? %>
+        <img src="<%= url_for(@cosmetic.image) %>" class="img-fluid"></div>
+    <% else %>
+    <img src="https://via.placeholder.com/700x400?text=No+Image" class="img-fluid">
     <% end %>
+
     <div class="col-6">
         <h3><%= @cosmetic.product_name %></h3>
         <p><%= @cosmetic.desc %></p>
@@ -49,15 +50,120 @@
 
             <button type="submit" class="btn btn-outline-dark">カートに入れる</button>
         </form>
-
-        <form action="/cosmetic" method="PATCH" data-remote="true">
-            <div id="star"></div>
-        
-        <button type="submit" class="btn btn-outline-dark">Rating</button>
-        </form>
     </div>
+</div>
+
+<div class="row">
+    <div class="col-12 mt-5">
+        <div class="comment-wrapper">
+
+            <div class="panel-heading">
+                <div class="panel-body">
+                    <form class="comment">
+                        <h2>💭 カスタマーレビュー</h2>
+                        <br>
+                        <textarea class="form-control comment-contents" placeholder="コメントを書いてください..."
+                            rows="4"></textarea>
+                        <br>
+                        <button type="submit" class="btn btn-info float-right">コメントを残す</button>
+                        <div class="clearfix"></div>
+                        <hr>
+                        <div class="media-list comment-list">
+                            <% @cosmetic.comments.reverse.each do |comment|%>
+                            <li class="media comment-<%= comment.id%>">
+                                <a href="#" class="pull-left">
+                                    <img src="<%= asset_path("profile.png") %>" alt="" class="img-circle">
+                                </a>
+                                <div class="media-body">
+                                    <span class="text-muted pull-right">
+                                        <small class="text-muted"><%= time_ago_in_words(comment.created_at) %></small>
+                                    </span>
+                                    <strong class="text-success"><%= comment.user_email %></strong>
+                                    <p>
+                                        <span class="comment-detail-<%=comment.id%>"><%= comment.contents %></span>
+                                    </p>
+                                    <div class="button_edit mb-2">
+                                        <button data-id="<%= comment.id %>"
+                                            class="btn btn-primary edit-comment">修正</button>
+                                        <button data-id="<%= comment.id %>"
+                                            class="btn btn-primary destroy-comment">削除</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <% end %>
+                        </div>
+                </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <form action="/cosmetics/<%= @cosmetic.id %>" method="PUT" data-remote="true">
+        <div id="star"></div>
+        <button type="submit" class="btn btn-outline-dark">Rating</button>
+    </form>
+</div>
+
+</div>
 <script>
-$('#star').raty({
-  path: '/images'
-});
+    $('#star').raty({
+        path: '/images',
+        score: 2
+        //   readOnly: true
+    });
+</script>
+<script>
+    //コメント作成
+    $('.comment').on('submit', function (e) {
+        e.preventDefault();
+        var comm = $('.comment-contents').val();
+
+        $.ajax({
+            url: "/cosmetics/<%= @cosmetic.id %>/comments",
+            method: 'POST',
+            data: {
+                contents: comm
+            }
+        });
+    })
+    //ページをReroadするためのdocument
+    //コメント削除
+    $(document).on('click', '.destroy-comment', function () {
+        var comment_id = $(this).attr('data-id');
+
+        $.ajax({
+            url: "/cosmetics/comments/" + comment_id,
+            method: "delete"
+        })
+    });
+
+    //コメント修正
+    $(document).on('click', '.edit-comment', function () {
+        if ($('.update-comment').length == 0) {
+            var comment_id = $(this).data('id');
+            var edit_comment = $(`.comment-detail-${comment_id}`);
+            var contents = edit_comment.text().trim();
+            edit_comment.html(`
+        <input type="text" value="${contents}" class="form-control edit-comment-${comment_id}">`);
+            $(this).text("확인").removeClass("edit-comment btn-warning").addClass("update-comment btn-dark");
+        } else {
+            alert("수정이 불가합니다.");
+        }
+    });
+
+    $(document).on('click', '.update-comment', function () {
+        console.log("update");
+        var comment_id = $(this).data('id');
+        var comment_form = $(`.edit-comment-${comment_id}`);
+        $.ajax({
+            url: "/cosmetics/comments/" + comment_id,
+            method: "patch",
+            data: {
+                contents: comment_form.val()
+            }
+        })
+    });
 </script>
