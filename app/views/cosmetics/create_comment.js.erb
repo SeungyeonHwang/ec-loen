@@ -8,6 +8,7 @@ $('.comment-list').prepend(`
             <small class="text-muted"><%= time_ago_in_words(@comment.created_at) %></small>
         </span>
         <strong class="text-success"><%= @comment.user_email %></strong>
+        <div class="comment-score" data-score="<%= @comment.score %>"></div>
         <p>
             <span class="comment-detail-<%= @comment.id %>"><%= @comment.contents %></span>
         </p>

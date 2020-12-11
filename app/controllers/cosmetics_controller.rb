@@ -9,18 +9,9 @@ class CosmeticsController < ApplicationController
     @cosmetic = Cosmetic.find(params[:id])
   end
 
-  # def change
-  #   @cosmetic = Cosmetic.find(params[:id])
-
-  #   @score='ddd'
-    
-  #   respond_to do |format|
-  #     format.js
-  #   end
-
   def create_comment
     @cosmetic = Cosmetic.find(params[:id])
-    @comment = Comment.create(user_id: current_user.id, cosmetic_id: @cosmetic.id, contents: params[:contents])
+    @comment = Comment.create(user_id: current_user.id, cosmetic_id: @cosmetic.id, contents: params[:contents], score: params[:score])
     # 縮約 @cosmetic.comments.new(user_id: current_user.id).save 
   end
 

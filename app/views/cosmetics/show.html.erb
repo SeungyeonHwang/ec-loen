@@ -61,35 +61,38 @@
                     <form class="comment">
                         <h2>💭 カスタマーレビュー</h2>
                         <br>
+                        <div id="star"></div>
+                        <br>
                         <textarea class="form-control comment-contents" placeholder="コメントを書いてください..."
                             rows="4"></textarea>
                         <br>
                         <button type="submit" class="btn btn-info float-right">コメントを残す</button>
-                        </form>
-                        <div class="clearfix"></div>
-                        <hr>
-                        <div class="media-list comment-list">
+                    </form>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <div class="media-list comment-list">
                         <% @cosmetic.comments.reverse.each do |comment|%>
-                            <li class="media comment-<%= comment.id%>">
-                                <a href="#" class="pull-left">
-                                    <img src="<%= asset_path("profile.png") %>" alt="" class="img-circle">
-                                </a>
-                                <div class="media-body">
-                                    <span class="text-muted pull-right">
-                                        <small class="text-muted"><%= time_ago_in_words(comment.created_at) %></small>
-                                    </span>
-                                    <strong class="text-success"><%= comment.user_email %></strong>
-                                    <p>
-                                        <span class="comment-detail-<%=comment.id%>"><%= comment.contents %></span>
-                                    </p>
-                                    <div class="button_edit mb-2">
-                                        <button data-id="<%= comment.id %>"
-                                            class="btn btn-primary edit-comment">修正</button>
-                                        <button data-id="<%= comment.id %>"
-                                            class="btn btn-primary destroy-comment">削除</button>
-                                    </div>
+                        <li class="media comment-<%= comment.id%>">
+                            <a href="#" class="pull-left">
+                                <img src="<%= asset_path("profile.png") %>" alt="" class="img-circle">
+                            </a>
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted"><%= time_ago_in_words(comment.created_at) %></small>
+                                </span>
+                                <strong class="text-success"><%= comment.user_email %></strong>
+                                <div class="comment-score mb-2" data-score="<%= comment.score %>"></div>
+                                
+                                <p>
+                                    <span class="comment-detail-<%=comment.id%>" style="font-size: 1.2em;"><%= comment.contents %></span>
+                                </p>
+                                <div class="button_edit mb-2">
+                                    <button data-id="<%= comment.id %>" class="btn btn-primary edit-comment">修正</button>
+                                    <button data-id="<%= comment.id %>"
+                                        class="btn btn-primary destroy-comment">削除</button>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                         <% end %>
                     </div>
                 </div>
@@ -97,71 +100,78 @@
         </div>
     </div>
 </div>
-
-
-    <form action="/cosmetics/<%= @cosmetic.id %>" method="PUT" data-remote="true">
-        <div id="star"></div>
-        <button type="submit" class="btn btn-outline-dark">Rating</button>
-    </form>
-</div>
+<div class="form">
 
 </div>
 <script>
-    $('#star').raty({
-        path: '/images',
-        score: 2
-        //   readOnly: true
+    $(document).ready(function () {
+        //コメント作成
+        $('.comment').on('submit', function () {
+            // e.preventDefault();
+            var comm = $('.comment-contents').val();
+            var score = $('[name="score"]').attr('value');
+
+            $.ajax({
+                url: "/cosmetics/<%= @cosmetic.id %>/comments",
+                method: 'POST',
+                data: {
+                    contents: comm,
+                    score: score
+                }
+            });
+        })
+        //ページをReroadするためのdocument
+        //コメント削除
+        $(document).on('click', '.destroy-comment', function () {
+            var comment_id = $(this).attr('data-id');
+
+            $.ajax({
+                url: "/cosmetics/comments/" + comment_id,
+                method: "delete"
+            })
+        });
+
+        //コメント修正
+        $(document).on('click', '.edit-comment', function () {
+            if ($('.update-comment').length == 0) {
+                var comment_id = $(this).data('id');
+                var edit_comment = $(`.comment-detail-${comment_id}`);
+                var contents = edit_comment.text().trim();
+                edit_comment.html(`
+        <input type="text" value="${contents}" class="form-control edit-comment-${comment_id}">`);
+                $(this).text("確認").removeClass("edit-comment btn-primary").addClass(
+                    "update-comment btn-warning");
+            } else {
+                alert("修正ができないです。");
+            }
+        });
+
+        $(document).on('click', '.update-comment', function () {
+            console.log("update");
+            var comment_id = $(this).data('id');
+            var comment_form = $(`.edit-comment-${comment_id}`);
+            $.ajax({
+                url: "/cosmetics/comments/" + comment_id,
+                method: "patch",
+                data: {
+                    contents: comment_form.val()
+                }
+            })
+        });
     });
 </script>
 <script>
-    //コメント作成
-    $('.comment').on('submit', function (e) {
-        e.preventDefault();
-        var comm = $('.comment-contents').val();
-
-        $.ajax({
-            url: "/cosmetics/<%= @cosmetic.id %>/comments",
-            method: 'POST',
-            data: {
-                contents: comm
-            }
-        });
-    })
-    //ページをReroadするためのdocument
-    //コメント削除
-    $(document).on('click', '.destroy-comment', function () {
-        var comment_id = $(this).attr('data-id');
-
-        $.ajax({
-            url: "/cosmetics/comments/" + comment_id,
-            method: "delete"
-        })
+    $('#star').raty({
+        path: '/images',
+        score: 0
     });
 
-    //コメント修正
-    $(document).on('click', '.edit-comment', function () {
-        if ($('.update-comment').length == 0) {
-            var comment_id = $(this).data('id');
-            var edit_comment = $(`.comment-detail-${comment_id}`);
-            var contents = edit_comment.text().trim();
-            edit_comment.html(`
-        <input type="text" value="${contents}" class="form-control edit-comment-${comment_id}">`);
-            $(this).text("確認").removeClass("edit-comment btn-primary").addClass("update-comment btn-warning");
-        } else {
-            alert("修正ができないです。");
-        }
-    });
-
-    $(document).on('click', '.update-comment', function () {
-        console.log("update");
-        var comment_id = $(this).data('id');
-        var comment_form = $(`.edit-comment-${comment_id}`);
-        $.ajax({
-            url: "/cosmetics/comments/" + comment_id,
-            method: "patch",
-            data: {
-                contents: comment_form.val()
-            }
-        })
+    $('.comment-score').raty({
+    size  : 5,
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/images'
     });
 </script>
