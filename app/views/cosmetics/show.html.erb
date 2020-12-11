@@ -56,7 +56,6 @@
 <div class="row">
     <div class="col-12 mt-5">
         <div class="comment-wrapper">
-
             <div class="panel-heading">
                 <div class="panel-body">
                     <form class="comment">
@@ -66,10 +65,11 @@
                             rows="4"></textarea>
                         <br>
                         <button type="submit" class="btn btn-info float-right">コメントを残す</button>
+                        </form>
                         <div class="clearfix"></div>
                         <hr>
                         <div class="media-list comment-list">
-                            <% @cosmetic.comments.reverse.each do |comment|%>
+                        <% @cosmetic.comments.reverse.each do |comment|%>
                             <li class="media comment-<%= comment.id%>">
                                 <a href="#" class="pull-left">
                                     <img src="<%= asset_path("profile.png") %>" alt="" class="img-circle">
@@ -90,15 +90,13 @@
                                     </div>
                                 </div>
                             </li>
-                            <% end %>
-                        </div>
+                        <% end %>
+                    </div>
                 </div>
-                </form>
-
             </div>
-
         </div>
     </div>
+</div>
 
 
     <form action="/cosmetics/<%= @cosmetic.id %>" method="PUT" data-remote="true">
@@ -148,9 +146,9 @@
             var contents = edit_comment.text().trim();
             edit_comment.html(`
         <input type="text" value="${contents}" class="form-control edit-comment-${comment_id}">`);
-            $(this).text("확인").removeClass("edit-comment btn-warning").addClass("update-comment btn-dark");
+            $(this).text("確認").removeClass("edit-comment btn-primary").addClass("update-comment btn-warning");
         } else {
-            alert("수정이 불가합니다.");
+            alert("修正ができないです。");
         }
     });
 
