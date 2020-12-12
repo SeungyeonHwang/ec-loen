@@ -1,4 +1,5 @@
 class CosmeticsController < ApplicationController
+  before_action :authenticate_user!, only: [:create_comment, :destroy_comment]
   skip_before_action :verify_authenticity_token
   
   def index
@@ -22,6 +23,7 @@ class CosmeticsController < ApplicationController
     end
 
     @hot_cosmetics = Cosmetic.Opend.order("count DESC").limit(3)
+    @company_count
   end
 
   def show

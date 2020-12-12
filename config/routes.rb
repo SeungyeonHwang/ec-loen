@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :sales, only: %i[index show]
+
   resources :carts, only: %i[create index destroy]
 
   resources :orders, only: %i[create show index] do
