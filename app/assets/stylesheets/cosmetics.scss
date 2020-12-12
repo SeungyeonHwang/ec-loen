@@ -2,8 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.card-img-top {
-  width: auto; height: auto;
-  width: 700px;
-  height: 400px;
+body {
+  margin-top: 20px;
+}
+
+.comment-wrapper .media-list .media img {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 25px;
+}
+
+.img-circle {
+  border-radius: 85%;
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+
+.panel-body {
+  border-style: none;
+}
+
+.text-success {
+  margin-left: 10px;
+}
+
+.button_edit {
+  text-align: right;
+
+}
+
+.comment-wrapper .media-list .media img {
+  width: 20px;
+  height: 20px;
+  border: none;
 }

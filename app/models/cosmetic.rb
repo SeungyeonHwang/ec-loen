@@ -18,6 +18,26 @@ class Cosmetic < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :orders, through: :order_items
 
+  has_many :comments, dependent: :destroy
+
+  def ave_score
+    if comments.present?
+      result = comments.average(:score).round
+    else
+      result = 0
+    end
+    result
+  end
+
+  def comment_count
+    if comments.present?
+      result = comments.count
+    else
+      result = 0
+    end
+      result
+  end
+
   #ダミーデーター作成
   def self.set_dummy_data
     30.times do |i|
