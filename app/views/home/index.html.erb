@@ -28,121 +28,45 @@
 <img src="<%= asset_path("banner_event.png") %>" class="img-fluid w-100 mb-3" alt="Responsive image">
 <h2>
   <p>💥 売れ筋ランキング</p>
-  </h1>
+  </h2>
   <div class="row text-center">
+    <% @cosmetics_count.each do |cosmetic| %>
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+        <a href="/cosmetics/<%= cosmetic.id %>"><img class="card-img-top" src="<%= url_for(cosmetic.image) %>" alt=""></a>
         <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus
-            neque.</p>
+          <h4 class="card-title"> <a href="/cosmetics/<%= cosmetic.id %>"><%= cosmetic.product_name %></a> <span
+                                class="text-primary" style="font-size: 13px;"><%= cosmetic.comment_count %>個の評価</span></h4>
+                                <h5><%= number_to_currency(cosmetic.price) %></h5>
+          <p class="card-text"><%= cosmetic.desc %></p>
         </div>
         <div class="card-footer">
-          <a href="#" class="btn btn-warning">詳細</a>
+          <div class="main-comment-score" data-score="<%= cosmetic.ave_score %>"></div>
         </div>
       </div>
     </div>
-
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente,
-            tempore debitis beatae culpa natus architecto.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-warning">詳細</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus
-            neque.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-warning">詳細</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente,
-            tempore debitis beatae culpa natus architecto.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-warning">詳細</a>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
   <h2>
     <p>⭐️ 星4つ以上の商品</p>
-    </h1>
+    </h2>
     <div class="row text-center">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-              necessitatibus
-              neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-warning">詳細</a>
-          </div>
+          <% @cosmetics_rating.each do |cosmetic| %>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+        <a href="/cosmetics/<%= cosmetic.id %>"><img class="card-img-top" src="<%= url_for(cosmetic.image) %>" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title"> <a href="/cosmetics/<%= cosmetic.id %>"><%= cosmetic.product_name %></a> <span
+                                class="text-primary" style="font-size: 13px;"><%= cosmetic.comment_count %>個の評価</span></h4>
+                                <h5><%= number_to_currency(cosmetic.price) %></h5>
+          <p class="card-text"><%= cosmetic.desc %></p>
+        </div>
+        <div class="card-footer">
+          <div class="main-comment-score" data-score="<%= cosmetic.ave_score %>"></div>
         </div>
       </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente,
-              tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-warning">詳細</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-              necessitatibus
-              neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-warning">詳細</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente,
-              tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-warning">詳細</a>
-          </div>
-        </div>
-      </div>
+    </div>
+    <% end %>
     </div>
     <br>
     <br>
@@ -210,3 +134,14 @@
         <a href="/blogs/<%= @blogs[2].id %>"><img src="<%= url_for(@blogs[2].image) %>" id="blog_img-1" class="img-fluid" alt="Responsive image"></a>
       </div>
     </div>
+  <script>
+      $(document).ready(function () {
+        $('.main-comment-score').raty({
+            readOnly: true,
+            score: function () {
+                return $(this).attr('data-score');
+            },
+            path: '/images'
+        });
+    });
+  </script>

@@ -21,12 +21,11 @@ class Cosmetic < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   def ave_score
-    if comments.present?
-      result = comments.average(:score).round
+    unless comments.present?
+      avg_score = 0
     else
-      result = 0
+      avg_score = comments.average(:score).present? ? comments.average(:score).round : 0
     end
-    result
   end
 
   def comment_count

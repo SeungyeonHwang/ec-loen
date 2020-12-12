@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
     carts.each do |cart|
       order.order_items.create(cosmetic_id: cart.cosmetic.id, quantity: cart.quantity)
+      cart.cosmetic.update(count: cart.cosmetic.count+1)
     end
 
     # 注文した後はカートの内容を削除
