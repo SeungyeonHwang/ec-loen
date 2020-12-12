@@ -45,25 +45,36 @@
             <% @cosmetics.each do |cosmetic| %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="/cosmetics/<%= cosmetic.id %>"><img class="card-img-top" src="<%= url_for(cosmetic.image) %>" alt=""></a>
+                    <a href="/cosmetics/<%= cosmetic.id %>"><img class="card-img-top"
+                            src="<%= url_for(cosmetic.image) %>" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="/cosmetics/<%= cosmetic.id %>"><%= cosmetic.product_name %></a>
+                            <a href="/cosmetics/<%= cosmetic.id %>"><%= cosmetic.product_name %></a> <span
+                                class="text-primary" style="font-size: 13px;"><%= cosmetic.comment_count %>個の評価</span>
                         </h4>
                         <h5><%= number_to_currency(cosmetic.price) %></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
                             numquam aspernatur!</p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        <div class="main-comment-score" data-score="<%= cosmetic.ave_score %>"></div>
                     </div>
                 </div>
             </div>
             <% end %>
         </div>
         <!-- /.row -->
-
     </div>
     <!-- /.col-lg-9 -->
-
 </div>
+<script>
+$(document).ready(function () {
+    $('.main-comment-score').raty({
+            readOnly: true,
+            score: function () {
+                return $(this).attr('data-score');
+            },
+            path: '/images'
+        });
+});
+</script>

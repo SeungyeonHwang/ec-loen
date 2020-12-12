@@ -82,9 +82,10 @@
                                 </span>
                                 <strong class="text-success"><%= comment.user_email %></strong>
                                 <div class="comment-score mb-2" data-score="<%= comment.score %>"></div>
-                                
+
                                 <p>
-                                    <span class="comment-detail-<%=comment.id%>" style="font-size: 1.2em;"><%= comment.contents %></span>
+                                    <span class="comment-detail-<%=comment.id%>"
+                                        style="font-size: 1.2em;"><%= comment.contents %></span>
                                 </p>
                                 <div class="button_edit mb-2">
                                     <button data-id="<%= comment.id %>" class="btn btn-primary edit-comment">修正</button>
@@ -100,8 +101,7 @@
         </div>
     </div>
 </div>
-<div class="form">
-
+<div>
 </div>
 <script>
     $(document).ready(function () {
@@ -158,20 +158,19 @@
                 }
             })
         });
-    });
-</script>
-<script>
-    $('#star').raty({
-        path: '/images',
-        score: 0
-    });
+        $('#star').raty({
+            path: '/images',
+            score: 0
+        });
 
-    $('.comment-score').raty({
-    size  : 5,
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    path: '/images'
+        $('.comment-score').raty({
+            size: 5,
+            readOnly: true,
+            score: function () {
+                return $(this).attr('data-score');
+            },
+            path: '/images'
+        });
+
     });
 </script>
