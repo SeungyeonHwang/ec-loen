@@ -1,5 +1,5 @@
 class CosmeticsController < ApplicationController
-  before_action :authenticate_user, only: [:create_comment, :destroy_comment, :update_comment]
+  before_action :authenticate_user!, only: [:destroy_comment, :update_comment]
   skip_before_action :verify_authenticity_token
 
   def index

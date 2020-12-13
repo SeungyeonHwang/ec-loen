@@ -23,6 +23,7 @@ class Cosmetic < ApplicationRecord
   def ave_score
     unless comments.present?
       avg_score = 0
+      update(rating: 0)
     else
       avg_score = comments.average(:score).present? ? comments.average(:score).round : 0
     end
