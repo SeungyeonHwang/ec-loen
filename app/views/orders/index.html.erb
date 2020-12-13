@@ -21,12 +21,19 @@
         </thead>
         <tbody>
           <% @orders.each do |order| %>
+          <% if order.name.present? %>
           <tr>
             <td><%= order.created_at.strftime("%F") %></td>
             <td><%= order.name %></td>
             <td><%= order.address %></td>
             <td>
+            <% if order.before_payment? %>
               <a href="#" class="badge badge-warning"><%= order.status %></a>
+              <% elsif order.processing? %>
+              <a href="#" class="badge badge-primary"><%= order.status %></a>
+              <% elsif order.order_failed? %>
+              <a href="#" class="badge badge-danger"><%= order.status %></a>
+              <% end %>
             </td>
             <% if order.before_payment? || order.order_failed? %>
             <td><a href="/orders/<%= order.id %>" class="btn btn-primary">詳細</a></td>
@@ -34,6 +41,7 @@
             <td></td>
             <% end %>
           </tr>
+          <% end %>
           <% end %>
         </tbody>
       </table>

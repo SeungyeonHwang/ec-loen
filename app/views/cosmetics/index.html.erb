@@ -25,10 +25,10 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center active">
                     メーカー
                 </li>
-                <% @cosmetics.each do |cosmetic| %>
+                <% @company_names.each do |name| %>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <%= cosmetic.company_name %>
-                        <span class="badge badge-primary badge-pill">0</span>
+                        <a href='/cosmetics/?company_name_select=<%= name.company_name %>'><%= name.company_name %></a>
+                        <span class="badge badge-primary badge-pill"><%= name.numbers %></span>
                     </li>
                 <% end %>
 
@@ -83,7 +83,6 @@
                                 class="text-primary" style="font-size: 13px;"><%= cosmetic.comment_count %>個の評価</span>
                         </h4>
                         <h5><%= number_to_currency(cosmetic.price) %></h5>
-                        <p class="card-text"><%= cosmetic.desc %></p>
                     </div>
                     <div class="card-footer">
                         <div class="main-comment-score" data-score="<%= cosmetic.ave_score %>"></div>

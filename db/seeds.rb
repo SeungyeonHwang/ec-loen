@@ -28,4 +28,4 @@
 # User.create(email: 'test@sample.co.jp', password: '12341234', password_confirmation: '12341234')
 
 # ダミーデータ作成
-# Cosmetic.set_dummy_data
+Cosmetic.set_dummy_data

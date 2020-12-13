@@ -57,3 +57,13 @@ a:hover {
   max-width: 100%;
   height: auto;
 }
+
+.event_image {
+  height: 240px;
+  object-fit: contain;
+  border-radius: 2%;
+}
+
+.badge{
+    color: white !important;
+}

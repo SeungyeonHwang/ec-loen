@@ -1,8 +1,6 @@
 class PaymentsController < ApplicationController
   def create
     order = Order.find(params[:order_id])
-    cosmetic = Cosmetic.find(params[:comment_id])
-    @comment.update(contents: params[:contents])
     
     if params[:details_id].present? && params[:resultFlg] == "000"
 
@@ -25,6 +23,14 @@ class PaymentsController < ApplicationController
         order.processing!
 
       elsif params[:resultFlg] == "001"
+        order.update(
+          name: params[:name],
+          phone: params[:phone],
+          email: params[:email],
+          postal_code: params[:zipcode],
+          address: params[:address1] + params[:adress2]
+        )
+        
         order.before_payment!
 
       elsif params[:resultFlg] == "002"
