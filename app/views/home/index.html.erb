@@ -74,6 +74,7 @@
       <p>✨ ビューティコラム新着情報</p>
     </h2>
     <%# カードItem %>
+    <% if @blogs.present? %>
     <hr class="featurette-divider">
     <div class="row featurette">
       <div id=hover-effect-1 class="col-md-7" style=" cursor: pointer;"
@@ -134,6 +135,7 @@
         <a href="/blogs/<%= @blogs[2].id %>"><img src="<%= url_for(@blogs[2].image) %>" id="blog_img-1" class="img-fluid" alt="Responsive image"></a>
       </div>
     </div>
+    <% end %>
   <script>
       $(document).ready(function () {
         $('.main-comment-score').raty({
