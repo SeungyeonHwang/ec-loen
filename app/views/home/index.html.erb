@@ -51,6 +51,7 @@
     <p>⭐️ 星4つ以上の商品</p>
     </h2>
     <div class="row text-center">
+          <% if @cosmetics_rating.present? %>
           <% @cosmetics_rating.each do |cosmetic| %>
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
@@ -66,6 +67,7 @@
         </div>
       </div>
     </div>
+    <% end %>
     <% end %>
     </div>
     <br>
