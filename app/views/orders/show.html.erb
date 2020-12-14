@@ -1,3 +1,7 @@
+  <div class="text-left">❗️ テスト用のアカウント(Paypal決済用) <br>ID : <strong>sb-pvigb3874582@personal.example.com</strong> <br>
+    PASSWORD : <strong>PvGa82-x</strong></div><br>Credit Card Number :
+  <strong>4525916807516153(VISA)</strong><br>Expiration Date : <strong>01/2026</strong><br>Credit Card CSV :
+  <strong>111</strong>
   <div class="row mt-5">
     <div class="col-12">
       <h3>注文内容を確認・変更する</h3>
@@ -96,197 +100,197 @@
       </div>
     </div>
   </div>
-<script>
-  check_form();
+  <script>
+    check_form();
 
-  function check_form() {
+    function check_form() {
 
-    is_name = $("#name").val()
-    is_phone = $("#phone").val()
-    is_email = $("#email").val()
-    is_post_code = $("#zipcode").val()
-    is_address_1 = $("#add_name").val()
-    is_address_2 = $("#adress").val()
+      is_name = $("#name").val()
+      is_phone = $("#phone").val()
+      is_email = $("#email").val()
+      is_post_code = $("#zipcode").val()
+      is_address_1 = $("#add_name").val()
+      is_address_2 = $("#adress").val()
 
-    nameValid = document.getElementById('nameValid')
-    phoneValid = document.getElementById('phoneValid');
-    emailValid = document.getElementById('emailValid');
-    postalValid = document.getElementById('postalValid');
+      nameValid = document.getElementById('nameValid')
+      phoneValid = document.getElementById('phoneValid');
+      emailValid = document.getElementById('emailValid');
+      postalValid = document.getElementById('postalValid');
 
-    if (!is_name) {
-      $("#nameValid").html("❗️ 名前を入力してください。");
-      $("#name").css('border-color', 'red');
-    } else {
-      $("#nameValid").html("");
-      $("#name").css('border-color', '#ced4da');
+      if (!is_name) {
+        $("#nameValid").html("❗️ 名前を入力してください。");
+        $("#name").css('border-color', 'red');
+      } else {
+        $("#nameValid").html("");
+        $("#name").css('border-color', '#ced4da');
+      }
+
+      if (!is_phone) {
+        $("#phoneValid").html("❗️ 電話番号を入力してください。");
+        $("#phone").css('border-color', 'red');
+      } else {
+        $("#phoneValid").html("");
+        $("#phone").css('border-color', '#ced4da');
+      }
+
+      if (!is_email) {
+        $("#emailValid").html("❗️ Eメールを入力してください。");
+        $("#email").css('border-color', 'red');
+      } else {
+        $("#emailValid").html("");
+        $("#email").css('border-color', '#ced4da');
+        validateForm()
+      }
+
+      if (!is_post_code) {
+        $("#postalValid").html("❗️ 郵便番号を入力してください。");
+        $("#zipcode").css('border-color', 'red');
+      } else if (!is_address_1) {
+        $("#postalValid").html("❗️ 郵便番号の形式が正しくありません。");
+        $("#zipcode").css('border-color', 'red');
+      } else if (!is_address_2) {
+        $("#postalValid").html("❗️ 建物名(ビル名)及び部屋番号を入力してください。");
+        $("#zipcode").css('border-color', '#ced4da');
+        $("#adress").css('border-color', 'red');
+      } else {
+        $("#postalValid").html("");
+        $("#zipcode").css('border-color', '#ced4da');
+        $("#adress").css('border-color', '#ced4da');
+      }
+
+      if (!(nameValid.innerText || phoneValid.innerText || emailValid.innerText || postalValid.innerText)) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
-    if (!is_phone) {
-      $("#phoneValid").html("❗️ 電話番号を入力してください。");
-      $("#phone").css('border-color', 'red');
-    } else {
-      $("#phoneValid").html("");
-      $("#phone").css('border-color', '#ced4da');
+    $("#payment_btn").on("click", function (e) {
+      e.preventDefault();
+      checked_data = check_form();
+      if (checked_data) {
+        document.getElementById("payment_btn").style.display = "none";
+        initPayPalButton();
+      } else {
+        alert("赤色の❗️印が付いている項目は入力必須です");
+      }
+    })
+
+    function validateForm() {
+      var x = document.getElementById("email").value;
+      var atpos = x.indexOf("@");
+      var dotpos = x.lastIndexOf(".");
+      if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+        $("#emailValid").html("❗️ Eメールの形式が正しくありません");
+        $("#email").css('border-color', 'red');
+        return true
+      } else {
+        $("#emailValid").html("");
+        $("#email").css('border-color', '#ced4da');
+        return false
+      }
     }
+  </script>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=JPY" data-sdk-integration-source="button-factory">
+  </script>
+  <script>
+    $(document).ready(function () {
+      if (self.name != 'reload') {
+        self.name = 'reload';
+        self.location.reload(true);
+      } else self.name = '';
+    });
 
-    if (!is_email) {
-      $("#emailValid").html("❗️ Eメールを入力してください。");
-      $("#email").css('border-color', 'red');
-    } else {
-      $("#emailValid").html("");
-      $("#email").css('border-color', '#ced4da');
-      validateForm()
-    }
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'pay',
 
-    if (!is_post_code) {
-      $("#postalValid").html("❗️ 郵便番号を入力してください。");
-      $("#zipcode").css('border-color', 'red');
-    } else if (!is_address_1) {
-      $("#postalValid").html("❗️ 郵便番号の形式が正しくありません。");
-      $("#zipcode").css('border-color', 'red');
-    } else if (!is_address_2) {
-      $("#postalValid").html("❗️ 建物名(ビル名)及び部屋番号を入力してください。");
-      $("#zipcode").css('border-color', '#ced4da');
-      $("#adress").css('border-color', 'red');
-    } else {
-      $("#postalValid").html("");
-      $("#zipcode").css('border-color', '#ced4da');
-      $("#adress").css('border-color', '#ced4da');
-    }
+        },
 
-    if (!(nameValid.innerText || phoneValid.innerText || emailValid.innerText || postalValid.innerText)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+        createOrder: function (data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              "amount": {
+                "currency_code": "JPY",
+                "value": < %= @order.total_price % >
+              }
+            }]
+          });
+        },
 
-  $("#payment_btn").on("click", function (e) {
-    e.preventDefault();
-    checked_data = check_form();
-    if (checked_data) {
-      document.getElementById("payment_btn").style.display = "none";
-      initPayPalButton();
-    } else {
-      alert("赤色の❗️印が付いている項目は入力必須です");
-    }
-  })
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            var resultFlg = "000"
+            var message = details.payer.name.given_name + ' 様の決済が正常に完了しました。';
 
-  function validateForm() {
-    var x = document.getElementById("email").value;
-    var atpos = x.indexOf("@");
-    var dotpos = x.lastIndexOf(".");
-    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
-      $("#emailValid").html("❗️ Eメールの形式が正しくありません");
-      $("#email").css('border-color', 'red');
-      return true
-    } else {
-      $("#emailValid").html("");
-      $("#email").css('border-color', '#ced4da');
-      return false
-    }
-  }
-</script>
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=JPY" data-sdk-integration-source="button-factory">
-</script>
-<script>
-  $(document).ready(function () {
-    if (self.name != 'reload') {
-      self.name = 'reload';
-      self.location.reload(true);
-    } else self.name = '';
-  });
+            // 入力して情報
+            $("#payer_id").val(details.payer.payer_id)
+            $("#details_id").val(details.id)
+            $("#merchant_id").val(details.purchase_units[0].payee.merchant_id)
+            $("#amount_value").val(details.purchase_units[0].amount.value)
+            $("#msg").val(message)
+            $("#resultFlg").val(resultFlg)
+            $("#order_info_form").submit()
 
-  function initPayPalButton() {
-    paypal.Buttons({
-      style: {
-        shape: 'rect',
-        color: 'gold',
-        layout: 'vertical',
-        label: 'pay',
+            // 決済情報 Ajax
+            // data = {
+            //   response: details
+            // }
 
-      },
+            // Rails.ajax({
+            //   type: "POST",
+            //   url: "/orders/<%= @order.id %>/payments",
+            //   data: new URLSearchParams(data)
+            // })
 
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            "amount": {
-              "currency_code": "JPY",
-              "value": <%= @order.total_price %>
-            }
-          }]
-        });
-      },
+            alert(message);
+          });
+        },
 
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          var resultFlg = "000"
-          var message = details.payer.name.given_name + ' 様の決済が正常に完了しました。';
+        onCancel: function () {
+          var resultFlg = "001"
+          var message = "お客様のお支払いはキャンセルされました。"
 
-          // 入力して情報
-          $("#payer_id").val(details.payer.payer_id)
-          $("#details_id").val(details.id)
-          $("#merchant_id").val(details.purchase_units[0].payee.merchant_id)
-          $("#amount_value").val(details.purchase_units[0].amount.value)
           $("#msg").val(message)
           $("#resultFlg").val(resultFlg)
           $("#order_info_form").submit()
 
-          // 決済情報 Ajax
-          // data = {
-          //   response: details
-          // }
-
-          // Rails.ajax({
-          //   type: "POST",
-          //   url: "/orders/<%= @order.id %>/payments",
-          //   data: new URLSearchParams(data)
-          // })
-
           alert(message);
-        });
-      },
+        },
 
-      onCancel: function () {
-        var resultFlg = "001"
-        var message = "お客様のお支払いはキャンセルされました。"
+        onError: function (err) {
+          var resultFlg = "002"
 
-        $("#msg").val(message)
-        $("#resultFlg").val(resultFlg)
-        $("#order_info_form").submit()
+          $("#msg").val(err)
+          $("#resultFlg").val(resultFlg)
+          $("#order_info_form").submit()
 
-        alert(message);
-      },
-
-      onError: function (err) {
-        var resultFlg = "002"
-
-        $("#msg").val(err)
-        $("#resultFlg").val(resultFlg)
-        $("#order_info_form").submit()
-
-        console.log(err);
-        alert("お客様のお支払いは失敗しました。");
-      }
-    }).render('#paypal-button-container');
-  }
-</script>
-<script>
-  // 住所検索（郵便番号利用）
-  var getAddName = function ($addNum) {
-    var _zipcloudAPI = document.body.appendChild(document.createElement("script"));
-    _zipcloudAPI.src = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=" + $addNum +
-      "&callback=getAddNameByZipcloudAPI";
-    document.body.removeChild(_zipcloudAPI);
-  };
-  var getAddNameByZipcloudAPI = function ($getAdd) {
-    var _addFormatted = "";
-    if ($getAdd.status == 200) {
-      _addFormatted += $getAdd.results[0].address1; // 都道府県名
-      _addFormatted += $getAdd.results[0].address2; // 市町村名
-      _addFormatted += $getAdd.results[0].address3; // 町域名
+          console.log(err);
+          alert("お客様のお支払いは失敗しました。");
+        }
+      }).render('#paypal-button-container');
     }
-    document.getElementById("add_name").value = _addFormatted;
-    check_form();
-  };
-</script>
+  </script>
+  <script>
+    // 住所検索（郵便番号利用）
+    var getAddName = function ($addNum) {
+      var _zipcloudAPI = document.body.appendChild(document.createElement("script"));
+      _zipcloudAPI.src = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=" + $addNum +
+        "&callback=getAddNameByZipcloudAPI";
+      document.body.removeChild(_zipcloudAPI);
+    };
+    var getAddNameByZipcloudAPI = function ($getAdd) {
+      var _addFormatted = "";
+      if ($getAdd.status == 200) {
+        _addFormatted += $getAdd.results[0].address1; // 都道府県名
+        _addFormatted += $getAdd.results[0].address2; // 市町村名
+        _addFormatted += $getAdd.results[0].address3; // 町域名
+      }
+      document.getElementById("add_name").value = _addFormatted;
+      check_form();
+    };
+  </script>
