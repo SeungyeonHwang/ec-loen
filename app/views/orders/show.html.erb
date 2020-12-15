@@ -5,17 +5,20 @@
   <div class="row mt-5">
     <div class="col-12">
       <h3>注文内容を確認・変更する</h3>
+      <% if @order.order_items.present? %>
       <% @order.order_items.each do |item| %>
       <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title"><%= item.cosmetic.product_name %></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= item.cosmetic.company_name %></h6>
+          <h6 class="card-subtitle mb-2 text-muted"><%= item.cosmetic.company_name %></h6> 
           <p class="card-text">数量 : <%= item.quantity %></p>
-          <a href="#" class="card-link">変更</a>
-          <a href="#" class="card-link">削除</a>
-          <p class="card-text">価格 : <%= price_to_currency(item) %></p>
+          <a href="/orders/<%= item.id %>" class="card-link text-primary" data-method="delete" data-confirm="商品を削除しますか？">削除</a> 
+          <br>
+          <br>
+          <p class="card-text">価格 : <span class="text-danger"><strong><%= price_to_currency(item) %></strong></p></span>
         </div>
       </div>
+      <% end %>
       <% end %>
     </div>
   </div>
