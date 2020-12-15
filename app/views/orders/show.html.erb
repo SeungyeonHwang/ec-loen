@@ -279,7 +279,7 @@
     // 住所検索（郵便番号利用）
     var getAddName = function ($addNum) {
       var _zipcloudAPI = document.body.appendChild(document.createElement("script"));
-      _zipcloudAPI.src = "http://zipcloud.ibsnet.co.jp/api/search?zipcode=" + $addNum +
+      _zipcloudAPI.src = "https://zipcloud.ibsnet.co.jp/api/search?zipcode=" + $addNum +
         "&callback=getAddNameByZipcloudAPI";
       document.body.removeChild(_zipcloudAPI);
     };
