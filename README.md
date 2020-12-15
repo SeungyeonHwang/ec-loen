@@ -5,13 +5,16 @@
 
 >コスパの良い韓国コスメが若い女性に流行っていることと韓国人である点を生かして、各種オンラインストアと連携して韓国製品を持ってきて販売しているという風に想定しで製作しました。
 <br>
-リンク : https://fierce-harbor-93132.herokuapp.com/
+
+> 下記のリンクを参照してください。🙇‍♂️
+- **ページリンク** : https://fierce-harbor-93132.herokuapp.com/
+- **管理者ページ** : https://fierce-harbor-93132.herokuapp.com/admin
+  - 管理者ID：admin@example.com
+  - PASSWORD : password
 
 # ✨アプリケーションの機能一覧
 
 - **サイト管理者機能（商品登録，照会、統計一覧、記事投稿など全体のサイト管理）**
-  - 管理者ID：admin@example.com
-  - PASSWORD : password
 - **ログイン & ログアウト**
 - **マイページ機能**
   - 注文状況の確認
