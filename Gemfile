@@ -17,6 +17,9 @@ gem "active_material", github: "vigetlabs/active_material"
 gem 'activeadmin_addons'
 gem 'ckeditor', '~> 4.3.0'
 
+#AWS S3 bucket
+gem "aws-sdk-s3", require: false
+
 # developmentバージョンのみ使用可能
 gem 'rails-erd', group: :development
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
