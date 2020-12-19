@@ -9,7 +9,7 @@ include ActionView::Helpers::OutputSafetyHelper
 
     @cosmetics_count = Cosmetic.Opend.order("count DESC").limit(4)
     # @cosmetics_rating = Cosmetic.Opend.order("rating DESC").limit(4)
-    @cosmetics_rating = Cosmetic.Opend.order("rating DESC").where("rating >= ?", 4).limit(4)
+    @cosmetics_rating = Cosmetic.Opend.order("rating DESC").where("rating >= ?", 4).limit(4) 
   end
 
   def mypage

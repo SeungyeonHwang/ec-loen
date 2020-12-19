@@ -33,6 +33,8 @@
               <a href="#" class="badge badge-primary"><%= order.status %></a>
               <% elsif order.order_failed? %>
               <a href="#" class="badge badge-danger"><%= order.status %></a>
+              <% elsif order.canceled? %>
+              <a href="#" class="badge badge-dark"><%= order.status %></a>
               <% end %>
             </td>
             <% if order.before_payment? || order.order_failed? %>

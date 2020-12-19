@@ -21,15 +21,15 @@
 
         <div class="bs-component">
             <ul class="list-group">
-                
+
                 <li class="list-group-item d-flex justify-content-between align-items-center active">
                     メーカー
                 </li>
                 <% @company_names.each do |name| %>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href='/cosmetics/?company_name_select=<%= name.company_name %>'><%= name.company_name %></a>
-                        <span class="badge badge-primary badge-pill"><%= name.numbers %></span>
-                    </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href='/cosmetics/?company_name_select=<%= name.company_name %>'><%= name.company_name %></a>
+                    <span class="badge badge-primary badge-pill"><%= name.numbers %></span>
+                </li>
                 <% end %>
 
             </ul>
@@ -95,8 +95,8 @@
     </div>
     <!-- /.col-lg-9 -->
 </div>
-  <script>
-      $(document).ready(function () {
+<script>
+    $(window).on("load", function () {
         $('.main-comment-score').raty({
             readOnly: true,
             score: function () {
@@ -105,4 +105,4 @@
             path: '/images'
         });
     });
-  </script>
+</script>

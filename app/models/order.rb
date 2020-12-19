@@ -9,9 +9,9 @@ class Order < ApplicationRecord
   has_one :payment, dependent: :nullify
 
   # !でstatusを変更できるようにするコード
-  enum status: %i[before_payment processing completed order_failed]
+  enum status: %i[before_payment processing completed order_failed canceled]
 
-  def product_price
+def product_price
     result = 0
     order_items.each do |order_item|
       result += (order_item.quantity * order_item.cosmetic.price)

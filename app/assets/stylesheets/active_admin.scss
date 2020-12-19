@@ -1,10 +1,10 @@
-$am-theme-primary: #d33c3cdd !default;
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "wigu/active_admin_theme";
 @import 'activeadmin_addons/all';
-@import "active_material";
 
 .small_img {
-    max-height: 300px !important;
-    
+    max-height: 200px !important;
 }
 
 .col-title {
@@ -34,4 +34,4 @@ $am-theme-primary: #d33c3cdd !default;
 .cke_chrome {
     width: 79.5% !important;
     overflow: hidden;
-  }
+}

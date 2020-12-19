@@ -7,6 +7,7 @@ ActiveAdmin.register Order do
   scope -> {"決済 済"}, :processing
   scope -> {"配達 完了"}, :completed
   scope -> {"キャンセル"}, :order_failed
+  scope -> {"返金 済"}, :canceled
 
   # フィルター整理
   filter :name
@@ -17,6 +18,19 @@ ActiveAdmin.register Order do
   # Order以外のテーブルから絞り込む_ransack(table_column_[eq/cont])
   filter :user_email_cont, label: "ユーザーEメールで検索"
   filter :cosmetics_product_name_cont, label: "商品名で検索"
+
+  batch_action :canceled, form: {
+    cancel_reason: :textarea
+  } do |ids, inputs|
+    orders = Order.where(id: ids)
+    orders.each do |order|
+      #返金の内部ロジック
+
+      order.update(cancel_reason: inputs["cancel_reason"], status: :canceled)
+    end
+    flash[:notice] = "返金されました。"
+    redirect_to collection_path
+  end
 
   index do
     selectable_column
@@ -61,6 +75,11 @@ ActiveAdmin.register Order do
         end
         column "リンク" do |item|
           a "詳細", href: "/admin/cosmetics/#{item.cosmetic.id}", target: "_blank"
+        end
+        if order.canceled?
+          column "返金の理由" do |item|
+            item.order.cancel_reason
+          end
         end
       end
     end

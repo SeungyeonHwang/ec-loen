@@ -6,12 +6,6 @@ GIT
     faker (2.14.0)
       i18n (>= 1.6, < 2)
 
-GIT
-  remote: https://github.com/vigetlabs/active_material.git
-  revision: ea09eaccf07c49508a3a5e5b3dbfbf41a5f85a83
-  specs:
-    active_material (1.4.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,6 +32,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_admin_theme (1.1.3)
+    active_material (1.4.2)
     activeadmin (2.8.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -343,7 +339,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_material!
+  active_admin_theme
   activeadmin
   activeadmin_addons
   any_login

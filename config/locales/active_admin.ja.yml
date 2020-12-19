@@ -78,6 +78,7 @@ ja:
       selection_toggle_explanation: "(選択)"
       action_label: "%{title}"
       labels:
+        canceled: "返金する"
         destroy: "削除する"
         open: "公開する"
         close: "非公開する"

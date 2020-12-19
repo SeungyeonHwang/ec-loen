@@ -1,5 +1,5 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/"><img src="<%= asset_path("loen.png") %>" class="logo" alt="..."></a>
+    <a id="go-root" class="navbar-brand" href="/"><img src="<%= asset_path("loen.png") %>" class="logo" alt="..."></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
       aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarnavaltmarkup"
         navbarNavAltMarkup="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active text-danger" href="/cosmetics">ショッピング</a>
+          <a id="go-cosmetics" class="nav-link active text-danger" href="/cosmetics">ショッピング</a>
           <a class="nav-link active" href="/sales">期間限定セール</a>
           <a class="nav-link active" href="/blogs">ビューティコラム</a>
           <a class="nav-link active" href="/news">お知らせ</a>
@@ -42,8 +42,17 @@
 
         </div>
       </div>
-      
+
   </nav>
-  <div class="text-right mr-3">❗️ テスト用のアカウント(管理者) ID : <strong>admin@example.com</strong> <br> PASSWORD : <strong>password</strong>
-  
-</div>
+  <div class="text-right mr-3">❗️ テスト用のアカウント(管理者) ID : <strong>admin@example.com</strong> <br> PASSWORD :
+    <strong>password</strong>
+
+  </div>
+  <script>
+    document.getElementById("go-root").onclick = function () {
+      location.href = "/";
+    };
+    document.getElementById("go-cosmetics").onclick = function () {
+      location.href = "/cosmetics";
+    };
+  </script>
