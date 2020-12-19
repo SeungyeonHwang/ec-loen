@@ -14,6 +14,9 @@ ActiveAdmin.register Order do
   filter :post_code
   filter :address
   filter :email
+  # Order以外のテーブルから絞り込む_ransack(table_column_[eq/cont])
+  filter :user_email_cont, label: "ユーザーEメールで検索"
+  filter :cosmetics_product_name_cont, label: "商品名で検索"
 
   index do
     selectable_column
