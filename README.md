@@ -53,12 +53,12 @@
 
 # 💻 アプリケーション内で使用している技術一覧
 
-- フレームワーク : Ruby on Rails
-- 使用している言語等 : Ruby, JavaScript(Jquery), Ajax, Bootstrap, CSS, HTML..
+- フレームワーク : `Ruby on Rails(5.2.4)`
+- 使用している言語等 : `Ruby(2.7.2)`, `JavaScript(+Jquery)`, `Ajax`, `Bootstrap`, `CSS`, `HTML`
 - インフラ : Heroku
 - データベース : Postgresql
-- 開発ツール : GitHub, SourceTree
-- 画像ストレージ : AWS S3
+- 開発ツール : `GitHub`, SourceTree
+- 画像ストレージ : `AWS-S3`
 
 # 🔍 データベースER図
 
