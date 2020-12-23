@@ -21,23 +21,18 @@
 
         <div class="bs-component">
             <ul class="list-group">
-
                 <li class="list-group-item d-flex justify-content-between align-items-center active">
                     メーカー
                 </li>
                 <% @company_names.each do |name| %>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <a href='/cosmetics/?company_name_select=<%= name.company_name %>'><%= name.company_name %></a>
-                    <span class="badge badge-primary badge-pill"><%= name.numbers %></span>
-                </li>
+                <button onclick="window.location.href='/cosmetics/?company_name_select=<%= name.company_name %>'"
+                    type="button" class="list-group-item list-group-item-action"><%= name.company_name %>
+                    <span class="badge badge-primary badge-pill"><%= name.numbers %></span></button>
                 <% end %>
-
             </ul>
         </div>
-
     </div>
-
-
+    
     <!-- /.col-lg-9 -->
     <div class="col-lg-9">
 
